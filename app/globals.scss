@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+.tv {
+  height: 100%;
+  min-height: auto;
+  margin: auto;
+  flex-wrap: nowrap;
+  padding: 4.5rem 0;
+
+  align-items: center;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 900;
+}
+p {
+  margin: 1rem 0 0;
+}
+
+video {
+  position: absolute;
+  width: 100%;
+}
+img {
+  z-index: 1;
+
+  width: 100%;
+}
+.text {
+  margin-bottom: 0.5rem;
+}
+.screen {
+  line-height: 1;
+  position: relative;
+  flex-basis: 50%;
+}
+@media (min-width: 600px) {
+  .tv {
+    display: flex;
+    flex-direction: row;
+  }
+  p {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 960px) {
+  h2 {
+    font-size: 3rem;
+  }
+}
+h1 {
+  font-size: 3rem;
+  font-weight: 900;
+}
+p {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+h2{
+
+  font-size: 3rem;
+  font-weight: 900;
+ 
+}
+h3 {
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+}
+
+.get-started {
+  text-align: center;
+  margin: 1.5rem 0 0;
+  font-size: 1.5rem;
+}
+.input {
+  display: flex;
+  flex: 1 1 100%;
+  border: 1px solid;
+  border-radius: 1rem;
+  background: rgba(22, 22, 22, 0.7);
+  border-color: rgba(128, 128, 128, 0.7);
+  font-size: 1rem;
+  font-weight: 400;
+  min-width: 12.5rem;
+  width: 100%;
+  height: 3.5rem;
+  padding: 0px;
+
+  color: rgb(255, 255, 255);
+}
+
+.get-started-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: horizontal-tb !important;
+  width: max-content;
+  margin-top: 1rem;
+  flex: 0 0 auto;
+  border: 0px;
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  min-height: 3.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgb(51, 26, 187, 0.9);
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  border-radius: 1rem;
+}
+form {
+  max-width: 36.625rem;
+
+  align-items: center;
+  flex-direction: column;
+  text-align: left;
+  margin: 1rem auto 0;
+  vertical-align: text-top;
+  display: flex;
+  width: 100%;
+}
+@media (min-width: 600px) {
+  form {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+  .get-started-button {
+    margin-top: 0;
+  }
+}
+
+
+.movies {
+  padding: 2rem;
+}
+.hero-image {
+  overflow: hidden;
+}
+section {
+  position: relative;
+  padding: 0 1.5rem;
+}
+section::after {
+  content: "";
+
+  width: calc(100vw + 1.5rem);
+  height: 0.2rem;
+  bottom: -0.2rem;
+  background-color: rgb(51, 26, 187, 0.8);
+  overflow: hidden;
+  z-index: 10;
+  position: absolute;
+  display: flex;
+  left: -1.5rem;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+@media screen and (min-width: 600px) {
+  .content-section {
+    max-width: calc(100% - 4rem);
+    margin: auto;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .content-section {
+    max-width: calc(83.33333333333334% - 6rem);
+    margin: auto;
+  }
+  section {
+    padding: 0 3rem;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .content-section {
+    max-width: calc(66.66666666666666% - 6rem);
+    margin: auto;
+  }
+}
+
+
+@media screen and (min-width: 600px) {
+  nav {
+    max-width: calc(100% - 4rem);
+  }
+}
+@media screen and (min-width: 1280px) {
+  nav {
+    max-width: calc(83.33333333333334% - 6rem);
+  }
+}
+@media screen and (min-width: 1920px) {
+  nav {
+    max-width: calc(66.66666666666666% - 6rem);
+  }
+}
+.info {
+  color: gold;
+
+  inset: 0;
+  margin: auto;
+  text-align: center;
+  h1 {
+    font-size: 2rem;
+    font-family: fantasy;
+    letter-spacing: 0.2ch;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  h3 {
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    font-weight: 600;
+  }
+}
+@media (min-width: 720px) {
+  .info {
+    position: absolute;
+    inset: 0;
+    top: 70px;
+    h1 {
+      font-size: 2.5rem;
+      font-family: fantasy;
+      letter-spacing: 0.2ch;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 5.375rem;
+  margin: auto;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.logo-span {
+  margin-right: auto;
+}
+
+.hero-wrapper {
+  margin: auto;
+}
+.hero-img {
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  transform: translateX(-1.5rem);
+  position: absolute;
+  object-fit: cover;
+  transform: scale(1) translateX();
+  overflow: hidden;
+}
+.flex-hero {
+  display: flex;
+  flex-direction: column;
+  padding: 9.875rem 0 4rem;
+  min-height: 43.75rem;
+}
+a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.shadow-hero-image {
+  background: rgb(0 0 0 / 40%);
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.header-hero {
+  max-width: calc(100% - 4rem);
+  margin: auto;
+  color: white;
+  text-align: center;
+  font-size: 50px;
+}
+.subtitle-hero {
+  margin: 1rem 0 0;
+}
+
+.logo {
+  width: 9.25rem;
+  height: 2.5rem;
+  color: rgba(229, 9, 20, 1);
+  fill: currentColor;
+  display: block;
+}
+
+.sign-in-button {
+  z-index: 1000;
+  border: 0;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  fill: currentColor;
+  position: relative;
+  transition-duration: 250ms;
+  transition-property: background-color, border-color;
+  transition-timing-function: cubic-bezier(0.9, 0, 0.51, 1);
+  vertical-align: text-top;
+  width: auto;
+  line-height: 1;
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-height: 2rem;
+  padding: 0.25rem 0.95rem;
+  background: rgb(229, 9, 20);
+  color: rgb(255, 255, 255);
+}

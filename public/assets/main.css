@@ -1,0 +1,17 @@
+@import "./base.css";
+
+* {
+  font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+  scroll-behavior: smooth;
+  line-height: 1.12em;
+}
+main {
+
+  margin: 0 auto;
+  min-height: 100vh;
+  font-weight: normal;
+}
+body {
+  overflow-x: hidden;
+}
+

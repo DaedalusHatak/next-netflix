@@ -1,0 +1,185 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {
+  --vt-c-white: #ffffff;
+  --vt-c-white-soft: #f8f8f8;
+  --vt-c-white-mute: #f2f2f2;
+
+  --vt-c-black: #181818;
+  --vt-c-black-soft: #222222;
+  --vt-c-black-mute: #282828;
+
+  --vt-c-indigo: #2c3e50;
+
+  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
+  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
+  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+
+  --vt-c-text-light-1: var(--vt-c-indigo);
+  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
+  --vt-c-text-dark-1: var(--vt-c-white);
+  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+}
+
+/* semantic color variables for this project */
+:root {
+  --color-background: var(--vt-c-white);
+  --color-background-soft: var(--vt-c-white-soft);
+  --color-background-mute: var(--vt-c-white-mute);
+
+  --color-border: var(--vt-c-divider-light-2);
+  --color-border-hover: var(--vt-c-divider-light-1);
+
+  --color-heading: var(--vt-c-text-light-1);
+  --color-text: var(--vt-c-text-light-1);
+
+  --section-gap: 160px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--vt-c-black);
+    --color-background-soft: var(--vt-c-black-soft);
+    --color-background-mute: var(--vt-c-black-mute);
+
+    --color-border: var(--vt-c-divider-dark-2);
+    --color-border-hover: var(--vt-c-divider-dark-1);
+
+    --color-heading: var(--vt-c-text-dark-1);
+    --color-text: var(--vt-c-text-dark-2);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+
+  background: rgb(15, 11, 15);
+  color: white;
+
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.dark{
+  background:rgb(15, 11, 15);;
+}
+.white{
+  min-height: 100dvh;
+  background-color: white;
+  color: black;
+
+}
+
+/* 
+@font-face {
+  font-display: optional;
+  font-family: Netflix Sans;
+  font-weight: 100;
+  src: url(/netflix-clone/assets/NetflixSans_W_Th.woff2) format("woff2"),
+    url(/netflix-clone/assets/NetflixSans_W_Th.woff) format("woff");
+}
+@font-face {
+  font-display: optional;
+  font-family: Netflix Sans;
+  font-weight: 300;
+  src: url(/netflix-clone/assets/NetflixSans_W_Lt.woff2) format("woff2"),
+    url(/netflix-clone/assets/NetflixSans_W_Lt.woff) format("woff");
+}
+@font-face {
+  font-display: optional;
+  font-family: Netflix Sans;
+  font-weight: 400;
+  src: url(/netflix-clone/assets/NetflixSans_W_Rg.woff2) format("woff2"),
+    url(/netflix-clone/assets/NetflixSans_W_Rg.woff) format("woff");
+}
+@font-face {
+  font-display: optional;
+  font-family: Netflix Sans;
+  font-weight: 500;
+  src: url(/netflix-clone/assets/NetflixSans_W_Md.woff2) format("woff2"),
+    url(/netflix-clone/assets/NetflixSans_W_Md.woff) format("woff");
+}
+@font-face {
+  font-display: optional;
+  font-family: Netflix Sans;
+  font-weight: 700;
+  src: url(/netflix-clone/assets/NetflixSans_W_Bd.woff2) format("woff2"),
+    url(/netflix-clone/assets/NetflixSans_W_Bd.woff) format("woff");
+}
+@font-face {
+  font-display: optional;
+  font-family: Netflix Sans;
+  font-weight: 900;
+  src: url(/netflix-clone/assets/NetflixSans_W_Blk.woff2) format("woff2"),
+    url(/netflix-clone/assets/NetflixSans_W_Blk.woff) format("woff");
+}
+*/
+
+@font-face {
+  font-family: Netflix Sans;
+  font-weight: 100;
+  src: url(@/assets/fonts/NetflixSans_W_Th.woff2) format("woff2"),
+    url(@/assets/fonts/NetflixSans_W_Th.woff) format("woff");
+}
+@font-face {
+  font-family: Netflix Sans;
+  font-weight: 300;
+  src: url(@/assets/fonts/NetflixSans_W_Lt.woff2) format("woff2"),
+    url(@/assets/fonts/NetflixSans_W_Lt.woff) format("woff");
+}
+@font-face {
+  font-family: Netflix Sans;
+  font-weight: 400;
+  src: url(@/assets/fonts/NetflixSans_W_Rg.woff2) format("woff2"),
+    url(@/assets/fonts/NetflixSans_W_Rg.woff) format("woff");
+}
+@font-face {
+  font-family: Netflix Sans;
+  font-weight: 500;
+  src: url(@/assets/fonts/NetflixSans_W_Md.woff2) format("woff2"),
+    url(@/assets/fonts/NetflixSans_W_Md.woff) format("woff");
+}
+@font-face {
+  font-family: Netflix Sans;
+  font-weight: 700;
+  src: url(@/assets/fonts/NetflixSans_W_Bd.woff2) format("woff2"),
+    url(@/assets/fonts/NetflixSans_W_Bd.woff) format("woff");
+}
+@font-face {
+  font-family: Netflix Sans;
+  font-weight: 900;
+  src: url(@/assets/fonts/NetflixSans_W_Blk.woff2) format("woff2"),
+    url(@/assets/fonts/NetflixSans_W_Blk.woff) format("woff");
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 900;
+}
+p {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+h2{
+
+  font-size: 3rem;
+  font-weight: 900;
+ 
+}
+h3 {
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+}
