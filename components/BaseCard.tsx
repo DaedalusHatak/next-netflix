@@ -1,14 +1,14 @@
-export default function BaseCard({header,desc}:any){
+export default function BaseCard({header,desc,comp}:any){
     return (
         <div
-        className="tv"
+        className="tv content-section"
       >
         <div className="screen text">
           <h2>{header }</h2>
           <p>{ desc }</p>
         </div>
         <div className="screen">
-          <slot></slot>
+          {comp}
         </div>
       </div>
     )

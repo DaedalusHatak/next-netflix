@@ -1,0 +1,100 @@
+.para {
+    margin-top: 5px;
+    font-size: 13px;
+    color: red;
+  }
+  .base-input {
+    position: relative;
+    width: 100%;
+  }
+
+
+  .border {
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+  .invalid {
+    border: 1px solid red;
+  }
+  .error {
+    display: flex;
+    gap: 5px;
+  }
+  .input {
+    display: block;
+    position: relative;
+    color: inherit;
+    padding: 1.5rem 1rem 0.5rem;
+    border: none;
+    border-radius: 1rem;
+    height: 100%;
+    width: 100%;
+    background-clip: padding-box;
+    appearance: none;
+    background-color: transparent !important;
+  }
+  .label {
+    width: max-content;
+    position: absolute;
+    z-index: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition-property: top, font-size, line-height;
+    transition-duration: 250ms;
+    pointer-events: none;
+    font-size: 1rem;
+    transition-timing-function: cubic-bezier(0.9, 0, 0.51, 1);
+    opacity: 0.7;
+    left: 1rem;
+    line-height: 1.5rem;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  .label-active {
+    position: absolute;
+    z-index: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition-property: top, font-size, line-height;
+    transition-duration: 250ms;
+    pointer-events: none;
+    font-size: 0.75rem;
+    transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+    opacity: 0.7;
+    left: 1rem;
+    line-height: 1.125rem;
+    right: 1rem;
+    top: 0.5rem;
+  }
+
+  // Background color
+  .background:-webkit-autofill {
+    -webkit-text-size-adjust: auto;
+    -webkit-text-fill-color: #fff;
+    box-shadow: inset #333 0 0 0 1000px;
+    -webkit-background-clip: text;
+  }
+
+  .input:-webkit-autofill + .label {
+    position: absolute;
+    z-index: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition-property: top, font-size, line-height;
+    transition-duration: 250ms;
+    pointer-events: none;
+    font-size: 0.75rem;
+    transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+    opacity: 0.7;
+    left: 1rem;
+    line-height: 1.125rem;
+    right: 1rem;
+    top: 0.5rem;
+  }  .background {
+    background-color: #333 !important;
+    color: white;
+  }

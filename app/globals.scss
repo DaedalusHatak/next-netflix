@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: 255,255,255;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
@@ -18,12 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #0f0b0f;
 }
 .tv {
   height: 100%;
@@ -55,6 +50,7 @@ img {
   margin-bottom: 0.5rem;
 }
 .screen {
+  z-index: 1;
   line-height: 1;
   position: relative;
   flex-basis: 50%;
@@ -101,7 +97,7 @@ h3 {
 }
 .input {
   display: flex;
-  flex: 1 1 100%;
+
   border: 1px solid;
   border-radius: 1rem;
   background: rgba(22, 22, 22, 0.7);
@@ -350,4 +346,111 @@ a {
   padding: 0.25rem 0.95rem;
   background: rgb(229, 9, 20);
   color: rgb(255, 255, 255);
+}
+
+.video-screen-enjoy {
+  z-index: -10;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  max-width: 63%;
+  max-height: 47%;
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1.16, 1.32);
+}
+img {
+  z-index: 1;
+  width: 100%;
+}
+.video-screen-everywhere {
+  z-index: -1;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  max-width: 63%;
+  max-height: 47%;
+  position: absolute;
+  top: 36%;
+  left: 53%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+//
+.video-screen {
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 1);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 60%;
+  min-width: 15rem;
+  padding: 0.25rem 0.65rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 2em 0 rgba(0, 0, 0, 1);
+  border-radius: 0.75rem;
+  z-index: 1;
+}
+.blue {
+  font-size: 0.75rem;
+
+  color: #0071eb;
+}
+.status {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.videobox {
+  margin-right: 1rem;
+  height: 3rem;
+  width: auto;
+}
+.download {
+  height: 1.5rem;
+  width: auto;
+}
+.background-img {
+  width: 100%;
+}
+@media only screen and (min-width: 600px) {
+  .video-screen {
+    font-size: 1rem;
+  }
+  .blue {
+    font-size: 0.875rem;
+  }
+}
+@media only screen and (min-width: 960px) {
+  .download {
+    height: 3.75rem;
+  }
+  .videobox {
+    height: 4.75rem;
+  }
+  .video-screen {
+    padding: 0.5rem 0.75rem;
+  }
 }
