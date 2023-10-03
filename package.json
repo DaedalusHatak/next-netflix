@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.6",
+    "firebase": "^10.4.0",
+    "firebase-admin": "^11.11.0",
     "@formkit/auto-animate": "^0.8.0",
     "framer-motion": "^10.16.4",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-transition-group": "^4.4.5",
+    "redux": "^4.2.1",
     "sass": "^1.68.0"
   },
   "devDependencies": {

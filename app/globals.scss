@@ -451,3 +451,17 @@ img {
     padding: 0.5rem 0.75rem;
   }
 }
+
+.fading{
+
+  transition: opacity 0.3s ease-in-out;
+  animation: fade 1s;
+}
+button{
+  padding: 1rem;
+  background-color: red;
+}
+@keyframes fade {
+  0% {opacity: 0;}
+  100%{opacity: 1;}
+}
