@@ -6,7 +6,6 @@ import EnjoyTv from "@/components/EnjoyTv/EnjoyTv";
 import DownloadImg from "@/components/DownloadImg/DownloadImg";
 import EverywhereImg from "@/components/EverywhereImg/EverywhereImg";
 import KidsImg from "@/components/KidsImg/KidsImg";
-import { Component } from "react";
 import AskedQuestions from "@/components/AskedQuestions/AskedQuestions";
 
 function Board({ xIsNext, squares, onPlay }: any) {
