@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255,255,255;
+  --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
@@ -17,6 +17,7 @@
 }
 
 body {
+  overflow-x: hidden;
   color: rgb(var(--foreground-rgb));
   background: #0f0b0f;
 }
@@ -78,11 +79,9 @@ p {
   font-size: 1.5rem;
   font-weight: 400;
 }
-h2{
-
+h2 {
   font-size: 3rem;
   font-weight: 900;
- 
 }
 h3 {
   font-weight: 400;
@@ -152,7 +151,6 @@ form {
   }
 }
 
-
 .movies {
   padding: 2rem;
 }
@@ -200,7 +198,6 @@ section::after {
     margin: auto;
   }
 }
-
 
 @media screen and (min-width: 600px) {
   nav {

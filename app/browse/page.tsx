@@ -1,20 +1,20 @@
-'use client'
-import Link from "next/link"
-import HeroNetflix from "@/components/HeroNetflix"
-import BaseCard from "@/components/BaseCard"
-import EnjoyTv from "@/components/EnjoyTv";
-import DownloadImg from "@/components/DownloadImg";
-import EverywhereImg from "@/components/EverywhereImg";
-import KidsImg from "@/components/KidsImg";
+"use client";
+import Link from "next/link";
+import HeroNetflix from "@/components/HeroNetflix/HeroNetflix";
+import BaseCard from "@/components/BaseCard/BaseCard";
+import EnjoyTv from "@/components/EnjoyTv/EnjoyTv";
+import DownloadImg from "@/components/DownloadImg/DownloadImg";
+import EverywhereImg from "@/components/EverywhereImg/EverywhereImg";
+import KidsImg from "@/components/KidsImg/KidsImg";
 import { Component } from "react";
+import AskedQuestions from "@/components/AskedQuestions/AskedQuestions";
 
-
-function Board({ xIsNext, squares, onPlay}: any){
+function Board({ xIsNext, squares, onPlay }: any) {
   const sections = [
     {
       header: "Enjoy on your TV",
       desc: "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
-      comp: EnjoyTv()
+      comp: EnjoyTv(),
     },
     {
       header: "Download your shows to watch offline",
@@ -34,40 +34,32 @@ function Board({ xIsNext, squares, onPlay}: any){
       reverse: true,
     },
   ];
-return(
-  <>
-   
-{sections.map((section,index) => (
-   <section  key={index}>
-      <BaseCard
-     
-      desc={section.desc}
-      header={section.header}
-      comp={section.comp}
-      reverse={section.reverse}
-      className="content-section"
-      ></BaseCard>
+  return (
+    <>
+      {sections.map((section, index) => (
+        <section key={index}>
+          <BaseCard
+            desc={section.desc}
+            header={section.header}
+            comp={section.comp}
+            reverse={section.reverse}
+            className="content-section"
+          ></BaseCard>
         </section>
-))}
-
-  </>
-)
+      ))}
+    </>
+  );
 }
 
 export default function Page() {
-  
-    return (
-   
-        <div>
-       <section className="hero-image">
-    <HeroNetflix />
-  </section>
-<Board></Board>
-
-  <section>
-
-  </section>
-       </div>
-
-    )
-  }
+  return (
+    <div>
+      <section className="hero-image">
+        <HeroNetflix />
+      </section>
+      <Board></Board>
+      <AskedQuestions></AskedQuestions>
+      <section></section>
+    </div>
+  );
+}

@@ -9,15 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.0",
+    "framer-motion": "^10.16.4",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-transition-group": "^4.4.5",
     "sass": "^1.68.0"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/react-transition-group": "^4.4.7",
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
