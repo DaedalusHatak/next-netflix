@@ -5,11 +5,11 @@ import firebaseAdmin from "@/firebase/firebase-admin";
 import { cookies } from "next/headers";
 async function getData() {
   try {
+    if(!cookies().get("name")) return "Raiden.webp";
     const user = await firebaseAdmin
       .auth()
       .verifyIdToken(cookies().get("name")!.value);
-    console.log(user);
-    return user.picture;
+    return user.picture ? user.picture : "Raiden.webp";
   } catch (e) {
     console.log("error", e);
   }
