@@ -5,9 +5,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 const auth = getAuth(firebase_app)
 
 
-async function signing(){
-    const credentials = await signInWithEmailAndPassword(auth,"test@test.com","test1234")
+async function SignInFirebase(email:string,password:string){
+    const credentials = await signInWithEmailAndPassword(auth,email,password)
     
     return credentials.user
 }
-export {signing}
+export {SignInFirebase}

@@ -1,36 +1,64 @@
-import Square from "@/components/button/button";
-import NavBar from "@/components/NavBar/NavBar";
-import SignIn from "@/components/SignIn";
-import firebaseAdmin from "@/firebase/firebase-admin";
-import { cookies } from "next/headers";
-async function getData() {
-  try {
-    if(!cookies().get("name")) return "Raiden.webp";
-    const user = await firebaseAdmin
-      .auth()
-      .verifyIdToken(cookies().get("name")!.value);
-    return user.picture ? user.picture : "Raiden.webp";
-  } catch (e) {
-    console.log("error", e);
-  }
-}
-export default async function Page() {
-  const data = await getData();
+"use client";
+import Link from "next/link";
+import HeroNetflix from "@/components/HeroNetflix/HeroNetflix";
+import BaseCard from "@/components/BaseCard/BaseCard";
+import EnjoyTv from "@/components/EnjoyTv/EnjoyTv";
+import DownloadImg from "@/components/DownloadImg/DownloadImg";
+import EverywhereImg from "@/components/EverywhereImg/EverywhereImg";
+import KidsImg from "@/components/KidsImg/KidsImg";
+import AskedQuestions from "@/components/AskedQuestions/AskedQuestions";
 
+function Board({ xIsNext, squares, onPlay }: any) {
+  const sections = [
+    {
+      header: "Enjoy on your TV",
+      desc: "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
+      comp: EnjoyTv(),
+    },
+    {
+      header: "Download your shows to watch offline",
+      desc: "Save your favorites easily and always have something to watch.",
+      comp: DownloadImg(),
+      reverse: true,
+    },
+    {
+      header: "Watch everywhere",
+      desc: "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.",
+      comp: EverywhereImg(),
+    },
+    {
+      header: "Create profiles for kids",
+      desc: "Send kids on adventures with their favorite characters in a space made just for them—free with your membership.",
+      comp: KidsImg(),
+      reverse: true,
+    },
+  ];
   return (
     <>
-      <NavBar user={data}></NavBar>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div className="flex flex-col gap-2">
-          {" "}
-          <h1>Hello world</h1>
-          <Square
-            value="Browse"
-            navigateTo="/browse"
-          ></Square>
-        </div>
-        <SignIn></SignIn>
-      </main>
+      {sections.map((section, index) => (
+        <section key={index}>
+          <BaseCard
+            desc={section.desc}
+            header={section.header}
+            comp={section.comp}
+            reverse={section.reverse}
+            className="content-section"
+          ></BaseCard>
+        </section>
+      ))}
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <div>
+      <section className="hero-image">
+        <HeroNetflix />
+      </section>
+      <Board></Board>
+      <AskedQuestions></AskedQuestions>
+      <section></section>
+    </div>
   );
 }

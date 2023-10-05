@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './NavBar.module.scss';
 
 export default function NavBar({ user }: any) {
@@ -15,6 +15,20 @@ export default function NavBar({ user }: any) {
 		window.addEventListener('resize', handleResize);
 		window.addEventListener('scroll', updateNavOnScroll);
 	}
+
+	useEffect(()=>{
+		console.log(profileCounter)
+		if (isHoveredMenu === true) {
+
+			const li = menuDropdown.current!.children[profileCounter] as HTMLAnchorElement
+			li.focus()
+		  } else if (isHoveredProfile === true) {
+			const children = dropdown.current!.children[
+			  profileCounter
+		  ] as HTMLAnchorElement; 
+			children.focus();
+		  }
+	},[profileCounter,isHoveredMenu,isHoveredProfile])
   function updateNavOnScroll() {
     setScroll(window.scrollY);
     setIsHoveredMenu(false);
@@ -27,7 +41,7 @@ export default function NavBar({ user }: any) {
 	}
 	function handleHoverMenu() {
 		clearTimeout(menuTimeout);
-
+		setIsHoveredProfile(false)
 		setIsHoveredMenu(true);
 	}
 	function handleUnhoverMenu() {
@@ -38,7 +52,7 @@ export default function NavBar({ user }: any) {
 	}
 	function handleHoverProfile() {
 		clearTimeout(profileTimeout);
-
+		setIsHoveredMenu(false)
 		setIsHoveredProfile(true);
 	}
 	function handleUnhoverProfile() {
@@ -50,74 +64,75 @@ export default function NavBar({ user }: any) {
   function PreviousArrowKey() {
 
     if (profileCounter > 0) {
-      console.log("if bigger")
       setProfileCounter(profileCounter - 1);
     }
-    console.log(profileCounter)
-    if (isHoveredMenu === true) {
-      const li = menuDropdown.current!.children[profileCounter] as HTMLAnchorElement
-      li.focus()
-      console.log(li)
-    } else if (isHoveredProfile === true) {
-      const children = dropdown.current!.children[
-        profileCounter
-    ] as HTMLAnchorElement; 
-      children.focus();
-    }
+ 
+    
   }
-  function NextArrowKey() {
-    console.log(profileCounter)
-    if (isHoveredMenu && profileCounter < 3 ) {
-      setProfileCounter(profileCounter + 1);
+ function NextArrowKey() {
+    
+    if (isHoveredMenu && profileCounter >= 3 ) {
+     return;
     }
-    else if(isHoveredProfile && profileCounter < 2 ){
-      setProfileCounter(profileCounter + 1);
-    }
-    if (isHoveredMenu === true) {
-      const li = menuDropdown.current!.children[profileCounter] as HTMLAnchorElement
-      li.focus();
-    } else if (isHoveredProfile === true) {
-      const children = dropdown.current!.children[profileCounter] as HTMLAnchorElement;
-      children.focus();
-    }
+    if(isHoveredProfile && profileCounter >= 2 ){
+     return;
+    } setProfileCounter(profileCounter + 1);
   }
 
   function startArrowKeys() {
+	setProfileCounter(0)
     if (isHoveredMenu === true) {
       mainPage.current!.focus();
     } else if (isHoveredProfile === true) {
       account.current!.focus();
     }
   }
-  async function handleKeys(event:any){
+ function handleKeys(event:any){
 
     if(event.altKey && event.ctrlKey) {
       return
     }
+	if(event.key !== "ArrowUp" && event.key !== "ArrowDown" && event.key !== "Enter" && event.key !== " " && (event.key !== "Tab" && event.shiftKey) && event.key !== "Tab") {
+        return
+      }
     const isOpenKey = event.key === " " || event.key === "Enter" ? true : false;
 
     if(event.target.id === "menu" && !isHoveredMenu && isOpenKey){
+		setProfileCounter(0)
+		setIsHoveredProfile(false)
       setIsHoveredMenu(true)
        return
       }
-    if(event.target.id === "profile" && !isHoveredProfile && isOpenKey){
+   if(event.target.id === "profile" && !isHoveredProfile && isOpenKey){
+	setProfileCounter(0)
+	setIsHoveredMenu(false)
       setIsHoveredProfile(true)
+	  
        return
       }
-      if(event.key !== "ArrowUp" && event.key !== "ArrowDown" && event.key !== "Enter" && event.key !== " " ) {
-        console.log(event.key)
-        return
-      }
-    if(event.key !== "Tab"){startArrowKeys()}
-    if(event.key === "ArrowDown"){
-      console.log("next",event.key)
-      await NextArrowKey()
+if(((event.target.id === "menu" && isHoveredMenu) || (event.target.id === "profile" && isHoveredProfile)) && event.key==="Tab" && !event.shiftKey){
+	event.preventDefault();
+	console.log(event.target.id)
+	startArrowKeys()
+	return;
+}
+	  
+    if(event.key === "ArrowDown" || (event.key === "Tab" && !event.shiftKey) && isHoveredMenu || isHoveredProfile){
+		if((isHoveredProfile && profileCounter !== 2) || (isHoveredMenu && profileCounter !== 3)){
+			console.log("prevent")
+			event.preventDefault();
+		}
+      NextArrowKey()
+	  return
     }
-    if(event.key === "ArrowUp"){
-      console.log("previous",event.key)
-      await PreviousArrowKey()
+    if(event.key === "ArrowUp"  || (event.key === "Tab" && event.shiftKey)){
+		if(profileCounter !== 0){
+			event.preventDefault();
+		}
+       PreviousArrowKey()
+	   return
     }
-   
+
   }
 
 	const account = useRef<HTMLAnchorElement | null>(null);
@@ -165,7 +180,7 @@ export default function NavBar({ user }: any) {
 						className={styles['mobile-list']}
 					>
 						<ul ref={menuDropdown} className={`${styles.list} ${styles.ul}`}>
-							<Link onKeyDown={handleKeys} className={styles.a} ref={mainPage} href="/browse">
+							<Link onKeyDown={handleKeys}   className={styles.a} ref={mainPage} href="/browse">
 								Main Page
 							</Link>
 							<Link onKeyDown={handleKeys} className={styles.a} href="/browse/tv">

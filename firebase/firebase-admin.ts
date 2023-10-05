@@ -9,7 +9,6 @@ const firebaseConfig = {
     : undefined,
   clientEmail: process.env.NEXT_FIREBASE_SA_CLIENT_EMAIL,
 };
-console.log(firebaseConfig);
 let firebaseAdmin: app.App;
 
 if (getApps().length == 0) {

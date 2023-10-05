@@ -20,7 +20,6 @@ try{
         return NextResponse.json({validToken: false})
     }
 }catch(e){
-    console.log("err",e)
     return NextResponse.json({validToken: false})
 }
   

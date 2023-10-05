@@ -3,8 +3,7 @@ import  { useState } from 'react';
 export default function BaseInput({name,type,isBackground,complete,required,error,value,onChange}:any){
     const {  label,input,background } = styles;
 
-    const [isFocused,setIsFocused] = useState(false);
- 
+    const [isFocused,setIsFocused] = useState(true);
 
     const handleFocus = (e: any) =>{
        setIsFocused(true)

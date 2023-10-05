@@ -1,0 +1,68 @@
+
+  .overflow {
+    overflow: hidden;
+  }
+  .button-visible {
+    opacity: 0 !important;
+  }
+  .carousel {
+    position: relative;
+  }
+  .animate {
+    transition: all 0.75s ease 0s;
+  }
+  .slider-wrapper {
+    position: relative;
+    display: flex;
+    z-index: 1;
+  }
+
+  .slider-element {
+    flex-grow: 0;
+    flex-shrink: 0;
+    z-index: 1;
+    padding: 0 0.25rem;
+  }
+
+  .img {
+    display: block;
+    width: 100%;
+
+    height: auto;
+  }
+  .max-width {
+    max-width: 190px;
+  }
+  @media screen and (max-width: 640px) {
+    .max-width {
+      max-width: 170px;
+    }
+  }
+
+  .handle {
+    transition: opacity 0.35s;
+    color: white;
+    border: 0;
+    width: 3rem;
+    height: 100%;
+    padding: 0;
+    z-index: 15;
+    position: absolute;
+    background-color: #202020;
+    opacity: 0.8;
+  }
+  .handle:hover {
+    opacity: 0.6;
+  }
+  .handle > img {
+    transform: scale(1.45);
+  }
+
+  .left-handle {
+    top: 0;
+    left: 0rem;
+  }
+  .right-handle {
+    top: 0;
+    right: 0rem;
+  }

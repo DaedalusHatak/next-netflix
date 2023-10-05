@@ -11,17 +11,14 @@ try{
   const first = request.cookies.get("name")?.value
   if(!first){
     if(request.nextUrl.pathname === "/browse" || request.url === "/browse"){
-      return NextResponse.next()
-      // return NextResponse.redirect(new URL('http://localhost:3000/',request.url))
+      return NextResponse.redirect(new URL('http://localhost:3000/',request.url))
      }
-     else {
-      return NextResponse.next()
-     }
+
   }
   const res = await fetch(`http://localhost:3000/api/getCookie`,{method:"POST",body:JSON.stringify(first)});
   const json = await res.json();
  if(json.validToken){
-if(request.nextUrl.pathname === "/a"){
+if(request.nextUrl.pathname === "/login" || request.nextUrl.pathname === "/"){
   return NextResponse.redirect(new URL('http://localhost:3000/browse',request.url))
 }}
 
@@ -32,5 +29,5 @@ if(request.nextUrl.pathname === "/a"){
  
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/','/browse'],
+  matcher: ['/','/browse','/login'],
 }
