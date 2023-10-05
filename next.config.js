@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "image.tmdb.org" }],
+  },
   env: {
     firebaseAdmin: {
       projectId: process.env.FIREBASE_SA_PROJECT_ID,
