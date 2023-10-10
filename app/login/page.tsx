@@ -68,7 +68,7 @@ export default function AskedQuestions() {
                   name="Password"
                   isBackground={true}
                   type="password"
-                  complete="password"
+                  complete="current-password"
                   value={password}
                   error={error}
                   onChange={(e: any) => setPassword(e.target.value)}

@@ -17,12 +17,13 @@ export default function Carousel({
   lg,
   xl,
   xxl,
+  position,
+  slide,
 }: any) {
   const [win, setWin] = useState(true);
   let hoverTimer: NodeJS.Timeout;
   //Defines if hover occurs
   const [hoverButtons, setHoverButtons] = useState<boolean>();
-  const [hoverElement, setHoverElement] = useState();
 
   //Defines start and end point for TouchEvent
   const [touchMovement, setTouchMovement] = useState({ start: 0, end: 0 });
@@ -53,30 +54,33 @@ export default function Carousel({
   };
   const pad = padding + "rem";
 
-  isTouchDevice();
-  if (typeof window !== "undefined") {
-  }
+
+
   useEffect(() => {
-    const touchDevice = isTouchDevice();
-    setIsMobile(touchDevice);
-    if (window.innerWidth >= 1536 && xxl) {
-      setScreenVariable(xxl);
-    } else if (window.innerWidth >= 1280 && window.innerWidth < 1536 && xl) {
-      setScreenVariable(xl);
-    } else if (window.innerWidth >= 1024 && window.innerWidth < 1280 && lg) {
-      setScreenVariable(lg);
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1024 && md) {
-      setScreenVariable(md);
-    } else if (window.innerWidth >= 640 && window.innerWidth < 768 && sm) {
-      setScreenVariable(sm);
-    } else {
-      setScreenVariable(size);
-    }
-    console.log(screenVariable);
-  }, [setIsMobile, lg, md, size, sm, xl, xxl, screenVariable]);
+    function setVariable(){
+      const touchDevice = isTouchDevice();
+      if(touchDevice){setScreenVariable(size); return}
+          if (window.innerWidth >= 1536 && xxl) {
+            setScreenVariable(xxl);
+          } else if (window.innerWidth >= 1280 && window.innerWidth < 1536 && xl) {
+            setScreenVariable(xl);
+          } else if (window.innerWidth >= 1024 && window.innerWidth < 1280 && lg) {
+            setScreenVariable(lg);
+          } else if (window.innerWidth >= 768 && window.innerWidth < 1024 && md) {
+            setScreenVariable(md);
+          } else if (window.innerWidth >= 640 && window.innerWidth < 768 && sm) {
+            setScreenVariable(sm);
+          } else {
+            setScreenVariable(size);
+          }
+          console.log(screenVariable);
+     }
+    window.addEventListener("resize",setVariable);
+  setVariable()
+  });
 
   //Emits currently hovered element
-  function currElement(e: MouseEvent, slide: any) {
+  function currElement(e: MouseEvent, slideElement: any) {
     let timer;
     if (emitImageDelay) {
       timer = emitImageDelay;
@@ -87,13 +91,13 @@ export default function Carousel({
       const touchDevice = isTouchDevice();
       const target = e.target as HTMLButtonElement;
       if (!touchDevice) {
-        setHoverElement(slide);
+      
 
-        //   hoverTimer = setTimeout(() => {
-        //     if (hoverElement) emit("hovElement", hoverElement);
-        //     if (e.target && hoverElement)
-        //       emit("positionElement", target.getBoundingClientRect());
-        //   }, timer);
+          hoverTimer = setTimeout(() => {
+           slide(slideElement)
+            if (e.target)
+            position(target.getBoundingClientRect())
+          }, timer);
       }
     }
   }
@@ -166,15 +170,17 @@ export default function Carousel({
   }
 
   //Sets start value to X user touched
-  function touchStart(event: TouchEvent) {
-    touchMovement.start = event.touches[0].clientX;
+  function touchStart(event: React.TouchEvent<HTMLDivElement>) {
+    console.log(event)
+    setTouchMovement({...touchMovement, start: event.touches[0].clientX})
   }
   //Sets end value for X user finished touching
-  function touchMove(event: TouchEvent) {
-    touchMovement.end = event.touches[0].clientX;
+  function touchMove(event: React.TouchEvent<HTMLDivElement>) {
+    setTouchMovement({...touchMovement, end: event.touches[0].clientX})
   }
   //Triggers forward() or back() function depending which direction movement occured
   function touchEnd() {
+    console.log(touchMovement)
     if (touchMovement.start > touchMovement.end && touchMovement.end > 0)
       forward();
     else if (touchMovement.start < touchMovement.end && touchMovement.end > 0)
@@ -191,7 +197,7 @@ export default function Carousel({
   return (
     <>
       <div
-        style={{ padding: padding }}
+        style={{ padding: `0 ${padding}rem` }}
         className={`${overflow ? "" : styles.overflow} ${styles.carousel}`}
       >
         <button
@@ -222,6 +228,9 @@ export default function Carousel({
         )}
         <div
           style={{ transform: transform() }}
+          onTouchMove={(e) => {touchMove(e)}}
+          onTouchStart={(e)=>touchStart(e)}
+          onTouchEnd={()=>touchEnd()}
           //   @touchstart.passive="touchStart"
           //   @touchmove.passive="touchMove"
           //   @touchend.passive="touchEnd"
