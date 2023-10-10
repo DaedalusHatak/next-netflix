@@ -200,26 +200,28 @@ export default function Carousel({
         style={{ padding: `0 ${padding}rem` }}
         className={`${overflow ? "" : styles.overflow} ${styles.carousel}`}
       >
-        <button
-          style={{ left: `${buttonPadding}rem`, width: `${buttonWidth}rem` }}
-          onClick={() => back()}
-          onMouseOver={() => setHoverButtons(true)}
-          onMouseLeave={() => setHoverButtons(false)}
-          className={`${styles.handle} ${styles["left-handle"]} ${
-            hoverButtons || buttonVisible ? "" : styles["button-visible"]
-          }`}
-          aria-label="Show previous movies"
-        >
-          {hoverButtons && (
-            <Image
-              className={styles["hover-button"]}
-              width={200}
-              height={200}
-              src="/assets/chevron-left-solid.svg"
-              alt=""
-            />
-          )}
-        </button>
+        {!isMobile && wasTriggered > 0 && (
+          <button
+            style={{ left: `${buttonPadding}rem`, width: `${buttonWidth}rem` }}
+            onClick={() => back()}
+            onMouseOver={() => setHoverButtons(true)}
+            onMouseLeave={() => setHoverButtons(false)}
+            className={`${styles.handle} ${styles["left-handle"]} ${
+              hoverButtons || buttonVisible ? "" : styles["button-visible"]
+            }`}
+            aria-label="Show previous movies"
+          >
+            {hoverButtons && (
+              <Image
+                className={styles["hover-button"]}
+                width={200}
+                height={200}
+                src="/assets/chevron-left-solid.svg"
+                alt=""
+              />
+            )}
+          </button>
+        )}
         {isMobile && wasTriggered && (
           <div
             style={{ left: `${buttonPadding}rem`, width: `${buttonWidth}rem` }}
