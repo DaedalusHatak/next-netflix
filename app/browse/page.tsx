@@ -35,7 +35,7 @@ export default async function Page() {
   ];
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-between p-[0.5rem] md:p-[3rem] pt-32">
+      <main className="flex min-h-screen flex-col items-center justify-between p-[0.5rem] md:p-[3rem] pt-32 mb-24">
         <div className="flex flex-col gap-2">
           {" "}
           <h1>Hello world</h1>

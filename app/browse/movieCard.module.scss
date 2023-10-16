@@ -1,0 +1,59 @@
+.hovered {
+    --scale-size: 1.85;
+  }
+  .info-rel {
+    position: relative;
+    width: 100%;
+  }
+  .info {
+    position: absolute;
+    width: 100%;
+    padding: 0.5rem 0.35rem;
+    background-color: #181818;
+    border-radius: 0 0 7px 7px;
+    margin: -1px 0;
+    transition: all 0.2s;
+    height: max-content;
+  }
+.gap{
+    padding-left: 5px;
+}
+  .header {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 17px;
+    padding: 0;
+    // transform:  scale( calc(1 / var(--scale-size)));
+  }
+  .para {
+    font-size: 11px;
+    font-weight: 300;
+    padding: 2px 0;
+    margin: 0.45rem 0 0 0;
+  }
+  .overview {
+    font-size: 10px;
+  }
+  .name {
+    font-weight: 700;
+  }
+
+  .hovered {
+    line-height: normal;
+    box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+    position: absolute;
+    display: grid;
+    align-items: flex-end;
+    font-weight: 400;
+    grid-template-rows: auto 1fr;
+    gap: 0;
+    padding: 0;
+    z-index: 25;
+  }
+
+  .img-card {
+    object-fit: fill;
+    width: 100%;
+    height: auto;
+    border-radius: 7px 7px 0 0;
+  }

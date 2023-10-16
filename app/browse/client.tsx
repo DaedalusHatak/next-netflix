@@ -9,14 +9,15 @@ import { useDispatch } from "react-redux";
 export default function Client({ data }: any) {
   const slide = useSelector((state: any) => state.slide.value.slide);
   const position = useSelector((state: any) => state.slide.value.position);
-  console.log(position);
 
   return (
     <>
+    
       {slide && position && (
         <MovieCard
           slide={slide}
           position={position}
+          
         />
       )}
 

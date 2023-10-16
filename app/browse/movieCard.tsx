@@ -1,50 +1,125 @@
-import { setPosition, setSlide } from "@/store/feature";
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-
+import { setPosition, setSlide } from '@/store/feature';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+import styles from "./movieCard.module.scss"
+import { useEffect, useState } from 'react';
 export default function MovieCard({ position, slide }: any) {
-  const dispatch = useDispatch();
-  function resetSlide() {
-    setTimeout(() => {
-      dispatch(setSlide(null));
-      dispatch(setPosition(null));
-    }, 150);
+
+  const [isHovered, setIsHovered] = useState(false);
+  const [scroll,setScroll] = useState(position.y + window.scrollY)
+console.log(scroll)
+
+useEffect(() => {
+  const calculateTopPosition = () => {
+    if (position.y && position.height) {
+      const center = position.y + position.height / 2;
+      setScroll(center - 48 + window.scrollY);
+    }
+  };
+
+  // Calculate the initial top position
+  calculateTopPosition();
+
+  // Recalculate the top position when the window is resized
+  window.addEventListener('resize', calculateTopPosition);
+
+  return () => {
+    window.removeEventListener('resize', calculateTopPosition);
+  };
+}, [position.y, position.height]);
+	const dispatch = useDispatch();
+	function resetSlide() {
+		setTimeout(() => {
+			dispatch(setSlide(null));
+			dispatch(setPosition(null));
+		}, 150);
+	}
+
+  const releaseDate = () => {
+    if (slide.release_date) {
+      return slide.release_date.split("-").reverse().join("-");
+    } else {
+      return slide.first_air_date
+        .split("-")
+        .reverse()
+        .join("-");
+    }
+  };
+  const positionX = () =>{
+    if(position.x > window.innerWidth - position.width - 96 - 48)
+    return position.right - position.width ;
+  if(position.width + 48 > position.x)
+  return position.x 
+return position.x
   }
-  return (
-    <>
-      <AnimatePresence>
-        {position && slide && (
-          <motion.div
-            key={slide}
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.25 }}
-            exit={{ scale: 1 }}
-            transition={{ duration: 0.15, damping: 10, stiffness: 100 }}
-            onMouseLeave={() => resetSlide()}
-            style={{
-              position: "absolute",
-              width: position.width,
-              left: position.x,
-              top: position.y,
-              zIndex: 10,
-            }}
-          >
-            <Image
-              key={`https://image.tmdb.org/t/p/w500${slide.backdrop_path}`}
-              src={`https://image.tmdb.org/t/p/w500${slide.backdrop_path}`}
-              width={300}
-              height={300}
-              alt=""
-            />
-            <div style={{ width: position.width }}>
-              <p style={{ margin: 0, fontSize: 10 }}>{slide.title}</p>
-              <p style={{ margin: 0, fontSize: 10 }}>{position.x}</p>
-            </div>
-          </motion.div>
-        )}
+  const originX = () =>{
+    if(position.x > window.innerWidth - position.width - 96 - 48)
+    return "right";
+  if(position.width + 48 > position.x)
+  return "left"
+return "center"
+  }
+
+
+
+	return (
+		<>
+    <AnimatePresence>
+			{position.width && slide && <motion.div
+      key={position}
+      initial={{ scale: 1.00, left: position.x,top: scroll }} // Set the initial scale to 1.00
+      animate={{ scale: isHovered ? 1.00 : 1.35, left: positionX(),top: scroll, transformOrigin: originX()}} // Use state to control the scale
+				whileHover={{ scale: 1.35 }}
+        onHoverStart={() => {
+          setIsHovered(false); // Set the hover state to true
+        }}
+        onHoverEnd={() => {
+          setIsHovered(true); // Set the hover state to false
+        }}
+				transition={{ duration: 0.15, damping: 10, stiffness: 100 }}
+				style={{
+	
+					position: 'absolute',
+					width: position.width,
+					zIndex: 3,
+				}}
+        onMouseLeave={() => resetSlide()}
+			>
+				
+					{position && slide && (
+						<div key={slide} >
+							<Image
+                className={styles["img-card"]}
+								key={`https://image.tmdb.org/t/p/w500${slide.backdrop_path}`}
+								src={`https://image.tmdb.org/t/p/w500${slide.backdrop_path}`}
+								width={position.width}
+								height={position.height}
+								alt=""
+							/>
+						</div>
+					)}
+
+				{position && slide &&
+              <div
+              className={styles.info}
+            >
+              <h3 className={styles.header}>
+                <span className={styles.name}>Title: </span>
+                { slide.title || slide.name }
+              </h3>
+              <p className={styles.para}><span className={styles.name}>Release date: </span> { releaseDate() }</p>
+              <p className={styles.para}>
+                <span className={styles.name}>Rating: </span> { slide.vote_average }
+                <span className={`${styles.name} ${styles.gap}`} >Votes: </span> { slide.vote_count }
+              </p>
+              <p className={`${styles.overview} ${styles.para}`}>
+                <span className={styles.name}>Overview: </span> {slide.overview }
+              </p>
+            </div>}
+		
+			</motion.div>}
       </AnimatePresence>
-    </>
-  );
+		</>
+	);
 }
