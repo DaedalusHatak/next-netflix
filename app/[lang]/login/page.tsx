@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./login.module.scss";
-import LoginForm from "./loginForm";
+import LoginForm from "@/app/_components/LoginForm/loginForm";
 
 export default function AskedQuestions() {
 

@@ -8,6 +8,7 @@ import styles from "./NavBar.module.scss";
 export default function NavBar({ user }: any) {
   const [isHoveredMenu, setIsHoveredMenu] = useState(false);
   const [isHoveredProfile, setIsHoveredProfile] = useState(false);
+  const [wasButton, setWasButton] = useState(false);
   const [scroll, setScroll] = useState(0);
   const [width, setwidth] = useState(0);
   const [profileCounter, setProfileCounter] = useState(0);
@@ -17,18 +18,19 @@ export default function NavBar({ user }: any) {
   }
 
   useEffect(() => {
-    if (isHoveredMenu === true) {
+    if (isHoveredMenu === true && wasButton) {
       const li = menuDropdown.current!.children[
         profileCounter
       ] as HTMLAnchorElement;
       li.focus();
-    } else if (isHoveredProfile === true) {
+    } else if (isHoveredProfile === true && wasButton) {
       const children = dropdown.current!.children[
         profileCounter
       ] as HTMLAnchorElement;
       children.focus();
     }
-  }, [profileCounter, isHoveredMenu, isHoveredProfile]);
+
+  }, [profileCounter, isHoveredMenu, isHoveredProfile,wasButton]);
   function updateNavOnScroll() {
     setScroll(window.scrollY);
     setIsHoveredMenu(false);
@@ -77,7 +79,8 @@ export default function NavBar({ user }: any) {
   }
 
   function startArrowKeys() {
-    setProfileCounter(0);
+ 
+       setProfileCounter(0);
     if (isHoveredMenu === true) {
       mainPage.current!.focus();
     } else if (isHoveredProfile === true) {
@@ -85,6 +88,8 @@ export default function NavBar({ user }: any) {
     }
   }
   function handleKeys(event: any) {
+    setWasButton(true) 
+
     if (event.altKey && event.ctrlKey) {
       return;
     }
@@ -100,7 +105,9 @@ export default function NavBar({ user }: any) {
       return;
     }
     const isOpenKey = event.key === " " || event.key === "Enter" ? true : false;
-
+if(isOpenKey){
+  event.preventDefault();
+}
     if (event.target.id === "menu" && !isHoveredMenu && isOpenKey) {
       setProfileCounter(0);
       setIsHoveredProfile(false);
@@ -137,6 +144,7 @@ export default function NavBar({ user }: any) {
       ) {
         event.preventDefault();
       }
+      else if(isHoveredProfile && profileCounter === 2) {}
       NextArrowKey();
       return;
     }
@@ -154,7 +162,7 @@ export default function NavBar({ user }: any) {
   const dropdown = useRef<HTMLUListElement | null>(null);
   const menuDropdown = useRef<HTMLUListElement>(null);
   return (
-    <nav>
+    <nav className={styles.nav}>
       <div className={styles.navbar}>
         <Image
           src="/assets/daedalus.png"

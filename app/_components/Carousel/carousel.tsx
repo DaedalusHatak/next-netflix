@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import styles from "./carousel.module.scss";
 import Image from "next/image";
-import { setSlide, setPosition } from "@/store/feature";
+import { setSlide, setPosition } from "@/app/_store/feature";
 import { useDispatch } from "react-redux";
 export default function Carousel({
   data,
@@ -271,6 +271,7 @@ export default function Carousel({
               className={styles["slider-element"]}
             >
               <Image
+              priority={true}
                 src={`https://image.tmdb.org/t/p/w500${slide.backdrop_path}`}
                 className={win ? "" : styles["max-width"]}
                 alt={slide.title || slide.name}

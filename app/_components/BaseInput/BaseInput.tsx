@@ -1,4 +1,4 @@
-import styles from "@/app/input.module.scss";
+import styles from "./input.module.scss";
 import { useState } from "react";
 export default function BaseInput({
   name,

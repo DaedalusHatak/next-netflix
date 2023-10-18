@@ -1,10 +1,9 @@
 "use client";
 
-import NavBar from "@/components/NavBar/NavBar";
-import MovieCard from "./movieCard";
+import MovieCard from "@/app/_components/MovieCard/movieCard";
+import NavBar from "@/app/_components/NavBar/NavBar";
+
 import { useSelector } from "react-redux";
-import { setPosition, setSlide } from "@/store/feature";
-import { useDispatch } from "react-redux";
 
 export default function Client({ data }: any) {
   const slide = useSelector((state: any) => state.slide.value.slide);

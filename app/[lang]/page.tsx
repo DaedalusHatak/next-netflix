@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
-import HeroNetflix from "@/components/HeroNetflix/HeroNetflix";
-import BaseCard from "@/components/BaseCard/BaseCard";
-import EnjoyTv from "@/components/EnjoyTv/EnjoyTv";
-import DownloadImg from "@/components/DownloadImg/DownloadImg";
-import EverywhereImg from "@/components/EverywhereImg/EverywhereImg";
-import KidsImg from "@/components/KidsImg/KidsImg";
-import AskedQuestions from "@/components/AskedQuestions/AskedQuestions";
+import HeroNetflix from "@/app/_components/HeroNetflix/HeroNetflix";
+import BaseCard from "@/app/_components/BaseCard/BaseCard";
+import EnjoyTv from "@/app/_components/EnjoyTv/EnjoyTv";
+import DownloadImg from "@/app/_components/DownloadImg/DownloadImg";
+import EverywhereImg from "@/app/_components/EverywhereImg/EverywhereImg";
+import KidsImg from "@/app/_components/KidsImg/KidsImg";
+import AskedQuestions from "@/app/_components/AskedQuestions/AskedQuestions";
 
 function Board({ xIsNext, squares, onPlay }: any) {
   const sections = [
@@ -50,7 +50,7 @@ function Board({ xIsNext, squares, onPlay }: any) {
   );
 }
 
-export default function Page() {
+export default function Page({ params: { lang } }: {params: {lang: string}}) {
   return (
     <div>
       <section className="hero-image">

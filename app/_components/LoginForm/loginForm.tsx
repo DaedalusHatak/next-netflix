@@ -1,9 +1,9 @@
 "use client"
-import BaseInput from "@/components/BaseInput/BaseInput";
-import styles from "./login.module.scss";
+import BaseInput from "@/app/_components/BaseInput/BaseInput";
+import styles from "@/app/[lang]/login/login.module.scss"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { SignInFirebase } from "@/server/getFirebase";
+import { SignInFirebase } from "@/app/_firebase/getFirebase";
 export default function LoginForm(){
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");

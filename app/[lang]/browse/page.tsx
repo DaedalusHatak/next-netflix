@@ -1,10 +1,12 @@
-import NavBar from "@/components/NavBar/NavBar";
-import firebaseAdmin from "@/firebase/firebase-admin";
+import NavBar from "@/app/_components/NavBar/NavBar";
+import firebaseAdmin from "@/app/_firebase/firebase-admin";
 import { cookies } from "next/headers";
-import DataList from "./dataList";
+
 import { useSelector } from "react-redux";
-import MovieCard from "./movieCard";
+
 import Client from "./client";
+import DataList from "@/app/_components/DataList/dataList";
+
 
 async function getData() {
   try {
@@ -25,7 +27,8 @@ function currSlide(state = 0, action: any) {
   }
 }
 
-export default async function Page() {
+export default async function Page({params: {lang}}:any) {
+  console.log(lang)
   const data = await getData();
   const queries = [
     "3/movie/popular",
@@ -35,14 +38,13 @@ export default async function Page() {
   ];
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-between p-[0.5rem] md:p-[3rem] pt-32 mb-24">
-        <div className="flex flex-col gap-2">
-          {" "}
-          <h1>Hello world</h1>
-        </div>
-        <Client data={data} />
+       <Client data={data} />
+      <main className="flex gap-28 flex-col items-center justify-between p-[0.5rem 0] md:p-[3rem 0] pt-32 mb-24">
+
+     
         {queries.map((q, index) => (
           <DataList
+          lang={lang}
             key={index}
             query={q}
           />

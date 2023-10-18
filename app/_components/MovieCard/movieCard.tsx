@@ -1,16 +1,17 @@
-import { setPosition, setSlide } from '@/store/feature';
+import { setPosition, setSlide } from '@/app/_store/feature';
 import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
+import Imagee from 'next/image';
 import { useDispatch } from 'react-redux';
 import styles from "./movieCard.module.scss"
 import { useEffect, useState } from 'react';
+import Head from "next/head";
 export default function MovieCard({ position, slide }: any) {
 
   const [isHovered, setIsHovered] = useState(false);
   const [scroll,setScroll] = useState(position.y + window.scrollY)
-console.log(scroll)
 
 useEffect(() => {
+
   const calculateTopPosition = () => {
     if (position.y && position.height) {
       const center = position.y + position.height / 2;
@@ -55,9 +56,9 @@ return position.x
   }
   const originX = () =>{
     if(position.x > window.innerWidth - position.width - 96 - 48)
-    return "right";
+   { return "right";}
   if(position.width + 48 > position.x)
-  return "left"
+  {return "left"}
 return "center"
   }
 
@@ -65,12 +66,16 @@ return "center"
 
 	return (
 		<>
+    <Head>
+      <link rel="preload" href={`https://image.tmdb.org/t/p/w500${slide.backdrop_path}`} as="image">
+      </link>
+    </Head>
     <AnimatePresence>
 			{position.width && slide && <motion.div
       key={position}
       initial={{ scale: 1.00, left: position.x,top: scroll }} // Set the initial scale to 1.00
-      animate={{ scale: isHovered ? 1.00 : 1.35, left: positionX(),top: scroll, transformOrigin: originX()}} // Use state to control the scale
-				whileHover={{ scale: 1.35 }}
+      animate={{ scale: isHovered ? 1.00 : 1.5, left: positionX(),top: scroll, translateY:"-25%"}} // Use state to control the scale
+				whileHover={{ scale: 1.5 }}
         onHoverStart={() => {
           setIsHovered(false); // Set the hover state to true
         }}
@@ -79,7 +84,7 @@ return "center"
         }}
 				transition={{ duration: 0.15, damping: 10, stiffness: 100 }}
 				style={{
-	
+          transformOrigin: originX(),
 					position: 'absolute',
 					width: position.width,
 					zIndex: 3,
@@ -89,14 +94,16 @@ return "center"
 				
 					{position && slide && (
 						<div key={slide} >
-							<Image
+							<Imagee
+              priority={true}
                 className={styles["img-card"]}
 								key={`https://image.tmdb.org/t/p/w500${slide.backdrop_path}`}
 								src={`https://image.tmdb.org/t/p/w500${slide.backdrop_path}`}
-								width={position.width}
-								height={position.height}
+                height={120}
+                width={220}
 								alt=""
 							/>
+              
 						</div>
 					)}
 
