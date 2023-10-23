@@ -12,10 +12,6 @@ export default function NavBar({ user }: any) {
   const [scroll, setScroll] = useState(0);
   const [width, setwidth] = useState(0);
   const [profileCounter, setProfileCounter] = useState(0);
-  if (typeof window !== "undefined") {
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", updateNavOnScroll);
-  }
 
   useEffect(() => {
     if (isHoveredMenu === true && wasButton) {
@@ -30,7 +26,11 @@ export default function NavBar({ user }: any) {
       children.focus();
     }
 
-  }, [profileCounter, isHoveredMenu, isHoveredProfile,wasButton]);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+      window.addEventListener("scroll", updateNavOnScroll);
+    }
+  }, [profileCounter, isHoveredMenu, isHoveredProfile, wasButton]);
   function updateNavOnScroll() {
     setScroll(window.scrollY);
     setIsHoveredMenu(false);
@@ -79,8 +79,7 @@ export default function NavBar({ user }: any) {
   }
 
   function startArrowKeys() {
- 
-       setProfileCounter(0);
+    setProfileCounter(0);
     if (isHoveredMenu === true) {
       mainPage.current!.focus();
     } else if (isHoveredProfile === true) {
@@ -88,7 +87,7 @@ export default function NavBar({ user }: any) {
     }
   }
   function handleKeys(event: any) {
-    setWasButton(true) 
+    setWasButton(true);
 
     if (event.altKey && event.ctrlKey) {
       return;
@@ -105,9 +104,9 @@ export default function NavBar({ user }: any) {
       return;
     }
     const isOpenKey = event.key === " " || event.key === "Enter" ? true : false;
-if(isOpenKey){
-  event.preventDefault();
-}
+    if (isOpenKey) {
+      event.preventDefault();
+    }
     if (event.target.id === "menu" && !isHoveredMenu && isOpenKey) {
       setProfileCounter(0);
       setIsHoveredProfile(false);
@@ -143,8 +142,8 @@ if(isOpenKey){
         (isHoveredMenu && profileCounter !== 3)
       ) {
         event.preventDefault();
+      } else if (isHoveredProfile && profileCounter === 2) {
       }
-      else if(isHoveredProfile && profileCounter === 2) {}
       NextArrowKey();
       return;
     }
@@ -176,24 +175,28 @@ if(isOpenKey){
           <Link
             className={styles.a}
             href="/browse"
+            scroll={false}
           >
             Main Page
           </Link>
           <Link
             className={styles.a}
             href="/browse/tv"
+            scroll={false}
           >
             Series
           </Link>
           <Link
             className={styles.a}
             href="/browse/movie"
+            scroll={false}
           >
             Movies
           </Link>
           <Link
             className={styles.a}
             href="/browse/popular"
+            scroll={false}
           >
             New and popular
           </Link>
@@ -222,6 +225,7 @@ if(isOpenKey){
                 className={styles.a}
                 ref={mainPage}
                 href="/browse"
+                scroll={false}
               >
                 Main Page
               </Link>
@@ -229,6 +233,7 @@ if(isOpenKey){
                 onKeyDown={handleKeys}
                 className={styles.a}
                 href="/browse/tv"
+                scroll={false}
               >
                 Series
               </Link>
@@ -236,6 +241,7 @@ if(isOpenKey){
                 onKeyDown={handleKeys}
                 className={styles.a}
                 href="/browse/movie"
+                scroll={false}
               >
                 Movies
               </Link>
@@ -243,6 +249,7 @@ if(isOpenKey){
                 onKeyDown={handleKeys}
                 className={styles.a}
                 href="/browse/popular"
+                scroll={false}
               >
                 New and popular
               </Link>
@@ -282,6 +289,7 @@ if(isOpenKey){
               className={styles.a}
               ref={account}
               href="/YourAccount"
+              scroll={false}
             >
               Account
             </Link>
@@ -289,6 +297,7 @@ if(isOpenKey){
               onKeyDown={handleKeys}
               className={styles.a}
               href="/posts"
+              scroll={false}
             >
               Posts
             </Link>
@@ -297,6 +306,7 @@ if(isOpenKey){
               onKeyDown={handleKeys}
               className={styles.a}
               href="/"
+              scroll={false}
             >
               Logout
             </Link>

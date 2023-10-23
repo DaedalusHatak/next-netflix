@@ -29,7 +29,7 @@ export async function middleware(request: NextRequest) {
   const locale = getLocale(request) ?? defaultLocale;
   const pathname = request.nextUrl.pathname;
   const newUrl = new URL(`/${locale}${pathname}`, request.nextUrl);
-  const baseUrl = new URL(`${pathname}`, request.nextUrl);
+  const baseUrl = new URL(`/login`, request.nextUrl);
   const safeUrl = new URL(`/browse`, request.nextUrl);
   try {
     const first = request.cookies.get("name")?.value;

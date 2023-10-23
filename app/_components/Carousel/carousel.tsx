@@ -108,10 +108,8 @@ export default function Carousel({
     if (emitImage) {
       const touchDevice = isTouchDevice();
       const target = e.target as HTMLButtonElement;
-      if (!touchDevice) {
+      if (!touchDevice && !isTransitioning) {
         hoverTimer = setTimeout(() => {
-          slide(slideElement);
-          dispatch(setSlide(slideElement));
           if (e.target) {
             const obj = target.getBoundingClientRect();
             const pos = {
@@ -125,6 +123,9 @@ export default function Carousel({
             };
 
             dispatch(setPosition(pos));
+          }
+          if (slideElement) {
+            dispatch(setSlide(slideElement));
           }
         }, timer);
       }
@@ -165,12 +166,12 @@ export default function Carousel({
 
               setIsTransitioning(false);
               setCarouselMove(0);
-            }, 750);
+            }, 550);
           }, 10);
         } else {
           setTimeout(() => {
             setIsTransitioning(false);
-          }, 750);
+          }, 550);
         }
       }
     }
@@ -193,7 +194,7 @@ export default function Carousel({
         setSlides(slide);
         setIsTransitioning(false);
         setCarouselMove(0);
-      }, 750);
+      }, 550);
     }
   }
 
@@ -271,7 +272,7 @@ export default function Carousel({
               className={styles["slider-element"]}
             >
               <Image
-              priority={true}
+                priority={true}
                 src={`https://image.tmdb.org/t/p/w500${slide.backdrop_path}`}
                 className={win ? "" : styles["max-width"]}
                 alt={slide.title || slide.name}
