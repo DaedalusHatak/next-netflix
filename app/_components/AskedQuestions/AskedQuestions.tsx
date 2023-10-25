@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import styles from "./AskedQuestions.module.scss";
 import GetStartedForm from "../GetStartedForm/GetStartedForm";

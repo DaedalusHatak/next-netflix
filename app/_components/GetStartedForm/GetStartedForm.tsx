@@ -1,7 +1,9 @@
+"use client"
 import { useState } from "react";
 import BaseInput from "../BaseInput/BaseInput";
-
+import {useRouter} from "next/navigation"
 export default function GetStartedForm() {
+  const router = useRouter();
   const [inputValue, setInputValue] = useState<string>("");
   const [error, setError]: any = useState("");
   function handleClick() {
@@ -14,9 +16,12 @@ export default function GetStartedForm() {
       return;
     }
     setError("");
+    router.push("/confirm")
   }
-  function handleSubmit(e: any) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
+    await fetch("/api/setEmail",{method:"POST",body:JSON.stringify(inputValue)});
+  
   }
   return (
     <>

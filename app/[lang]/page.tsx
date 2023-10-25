@@ -1,5 +1,3 @@
-"use client";
-import Link from "next/link";
 import HeroNetflix from "@/app/_components/HeroNetflix/HeroNetflix";
 import BaseCard from "@/app/_components/BaseCard/BaseCard";
 import EnjoyTv from "@/app/_components/EnjoyTv/EnjoyTv";
@@ -8,7 +6,7 @@ import EverywhereImg from "@/app/_components/EverywhereImg/EverywhereImg";
 import KidsImg from "@/app/_components/KidsImg/KidsImg";
 import AskedQuestions from "@/app/_components/AskedQuestions/AskedQuestions";
 
-function Board({ xIsNext, squares, onPlay }: any) {
+function Components() {
   const sections = [
     {
       header: "Enjoy on your TV",
@@ -56,7 +54,7 @@ export default function Page({ params: { lang } }: {params: {lang: string}}) {
       <section className="hero-image">
         <HeroNetflix />
       </section>
-      <Board></Board>
+      <Components></Components>
       <AskedQuestions></AskedQuestions>
       <section></section>
     </div>

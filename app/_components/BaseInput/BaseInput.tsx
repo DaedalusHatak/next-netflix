@@ -1,5 +1,5 @@
 import styles from "./input.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function BaseInput({
   name,
   type,
@@ -12,7 +12,7 @@ export default function BaseInput({
 }: any) {
   const { label, input, background } = styles;
 
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(value ? true : false);
 
   const handleFocus = (e: any) => {
     setIsFocused(true);

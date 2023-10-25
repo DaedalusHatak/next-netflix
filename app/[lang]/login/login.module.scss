@@ -4,6 +4,7 @@
 }
 
 .nav {
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -18,7 +19,7 @@
 .form {
   display: flex;
   gap: 1rem;
-
+  z-index: 1;
   flex-direction: column;
   justify-content: center;
   text-align: left;
@@ -40,6 +41,7 @@
   display: none;
 }
 .shadow-hero-image {
+  z-index: 1;
   background: rgb(0 0 0 / 40%);
   background-image: linear-gradient(
     to top,
@@ -145,10 +147,10 @@
 //media
 @media screen and (min-width: 600px) {
   .nav {
+    z-index: 1;
     max-width: calc(100% - 4rem);
   }
   .hero-img {
-    z-index: -1;
     height: 100%;
     width: 100%;
     min-height: 100dvh;
@@ -159,10 +161,12 @@
     overflow: hidden;
   }
   .flex-hero {
+    z-index: 1;
     max-width: 450px;
     margin: auto;
   }
   .form-hero {
+    z-index: 1;
     min-width: 500px;
     padding: 3rem 4rem;
     flex-grow: 0.3;

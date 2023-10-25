@@ -1,5 +1,4 @@
 import { ReduxProvider } from "@/app/_store/provider";
-import "./globals.scss";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
@@ -17,11 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="html" lang={params.lang ?? "en-US"}>
-      <body className={`${inter.className} body`}>
-      
-       <main> <ReduxProvider>{children}</ReduxProvider></main>
-      </body>
-    </html>
+
+
+       <main className="bg-white">
+       <ReduxProvider>{children}</ReduxProvider>
+       </main>
+
   );
 }
