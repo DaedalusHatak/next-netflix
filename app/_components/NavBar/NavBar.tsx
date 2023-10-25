@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./NavBar.module.scss";
+import { signOutUser } from "@/app/_firebase/getFirebase";
 
 export default function NavBar({ user }: any) {
   const [isHoveredMenu, setIsHoveredMenu] = useState(false);
@@ -307,6 +308,7 @@ export default function NavBar({ user }: any) {
               className={styles.a}
               href="/"
               scroll={false}
+              onClick={() => signOutUser()}
             >
               Logout
             </Link>

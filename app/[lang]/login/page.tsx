@@ -4,9 +4,6 @@ import styles from "./login.module.scss";
 import LoginForm from "@/app/_components/LoginForm/loginForm";
 
 export default function AskedQuestions() {
-
-
-  
   return (
     <>
       <Image
@@ -32,8 +29,7 @@ export default function AskedQuestions() {
           <div className={styles["form-hero"]}>
             <div className={styles["login-form"]}>
               <h1 className={styles["h1"]}>Sign In</h1>
-             <LoginForm/>
-          
+              <LoginForm />
             </div>
             <div className={styles["reg-link"]}>
               New to Daedalus?{" "}
