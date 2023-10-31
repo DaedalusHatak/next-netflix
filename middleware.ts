@@ -32,25 +32,31 @@ export async function middleware(request: NextRequest) {
   const baseUrl = new URL(`/login`, request.nextUrl);
   const safeUrl = new URL(`/browse`, request.nextUrl);
   try {
-    const first = request.cookies.get("name")?.value;
-    if (!first) {
-      if (request.nextUrl.pathname === "/browse" || request.url === "/browse") {
+    //Checking if cookie exists and has value
+    const idToken = request.cookies.get("name")?.value;
+    if (!idToken) {
+      if (request.nextUrl.pathname === "/browse" || request.nextUrl.pathname === "/YourAccount" ) {
         return NextResponse.redirect(baseUrl);
       }
     }
+
+//Validates cookie value
     const res = await fetch(`http://localhost:3000/api/getCookie`, {
       method: "POST",
-      body: JSON.stringify(first),
+      body: JSON.stringify(idToken),
     });
     const json = await res.json();
-    if (json.validToken) {
-      if (
-        request.nextUrl.pathname === "/login" ||
-        request.nextUrl.pathname === "/"
-      ) {
+//Redirects to safe route when cookie has valid token
+    if (json.validToken && (request.nextUrl.pathname === "/login" ||
+    request.nextUrl.pathname === "/")) {
         return NextResponse.redirect(safeUrl);
-      }
     }
+
+//Redirects to login route when cookie has invalid token
+   if(!json.validToken && (request.nextUrl.pathname === "/browse" || request.nextUrl.pathname === "/YourAccount")){
+      return NextResponse.redirect(baseUrl);
+   }
+
   } catch (e) {}
   return NextResponse.rewrite(newUrl);
 }

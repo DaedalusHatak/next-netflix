@@ -38,6 +38,7 @@ export default function GetStartedForm() {
               name="Email Address"
               isBackground={true}
               type="email"
+              fullWidth={true}
               complete="email"
               value={inputValue}
               error={error}

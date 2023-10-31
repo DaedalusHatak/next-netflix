@@ -1,0 +1,231 @@
+.header-2{
+
+    font-size: 1.5em;
+    text-align: left;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #999;
+}
+
+.flex-center {
+  text-align: center;
+  padding: 2rem 1rem;
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.change-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: horizontal-tb !important;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  border: 0px;
+
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  font-weight: 500;
+  height: 100%;
+  min-height: 2.5rem;
+  max-height: 3.19rem;
+  padding: 1.2rem 1rem;
+  background: rgb(51, 26, 187, 0.9);
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.form{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.modal-backdrop {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #0000004d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+.verification{
+    padding-left: 5px;
+  border-radius: 5px;
+  border: 1px solid;
+}
+  .modal {
+    width: calc(100% - 4rem);
+    z-index: 999;
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 15px;
+    display: flex;
+    width: 100%;
+    gap: 1.25rem;
+    justify-content: flex-end;
+  }
+  .modal-header {
+    font-size: 20px;
+  }
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal-header,
+  .modal-body {
+    border-bottom: 1px solid #eeeeee;
+    color: #242424;
+    justify-content: space-between;
+  }
+  .error {
+    color: red;
+  }
+
+  .btn-input {
+    color: #fff;
+    cursor: pointer;
+
+    padding: 8px;
+    background: rgba(51, 26, 187, 0.9);
+    border: 1px solid rgba(51, 26, 187, 0.9);
+    border-radius: 8px;
+  }
+  @media screen and (min-width: 420px) {
+    .modal {
+      width: 420px;
+    }
+  }
+
+
+
+  .delete {
+    width: 100%;
+    padding: 2rem;
+    button {
+      width: 100%;
+    }
+  }
+
+
+  .account {
+    display: grid;
+    grid-template-columns: 120px 2fr;
+    gap: 70px;
+    padding-top: 1rem;
+  }
+  .category {
+    font-size: 1.125em;
+    text-align: left;
+    color: #dbdbdb;
+    h3 {
+      color: #a0a0a0;
+      font-size: 1.125em;
+      font-weight: 700;
+    }
+  }
+  .details {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: space-between;
+  }
+  .detail-item {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .button-spinner {
+    min-width: 200px;
+  }
+
+  .loader {
+    border: 11px solid #f3f3f3; /* Light grey */
+    border-top: 11px solid #3498db; /* Blue */
+    border-radius: 100%;
+    position: relative;
+    height: 100%;
+    max-height: 20px;
+    animation: spin 2s linear infinite;
+  }
+
+  .loader span {
+    background-color: rgb(51, 26, 187);
+    display: block;
+    position: absolute;
+    inset: 0;
+    left: -12px;
+    top: -12px;
+    border-radius: 100%;
+    height: 24px;
+    width: 24px;
+
+    transform: scale(0.75, 0.75);
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .item-input {
+    display: flex;
+    text-align: left;
+    width: 100%;
+   max-width: 100%;
+    justify-content: space-between;
+    .base-input {
+      max-width: 300px !important;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .account {
+      grid-template-columns: auto;
+      grid-template-rows: max-content 1fr;
+      gap: 10px;
+    }
+    .detail-item {
+      display: block;
+      width: 100%;
+    }
+    .item-input {
+      display: block;
+      .base-input {
+        max-width: 100% !important;
+      }
+    }
+    .change-button {
+      width: 100%;
+      font-size: 17px;
+    }
+  }
+  @media screen and (min-width: 500px) and (max-width: 740px) {
+    .account {
+      grid-template-columns: auto;
+      gap: 10px;
+    }
+
+    .change-button {
+      font-size: 14px;
+    }
+  }

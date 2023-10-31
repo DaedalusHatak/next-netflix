@@ -6,6 +6,7 @@ export default function BaseInput({
   isBackground,
   complete,
   required,
+  fullWidth,
   error,
   value,
   onChange,
@@ -25,7 +26,7 @@ export default function BaseInput({
   const labelStyle = isFocused ? styles["label-active"] : label;
   const bg = isBackground ? `${input} ${background} ` : input;
   return (
-    <div className={styles["base-input"]}>
+    <div className={styles["base-input"]} style={fullWidth ? {width:"100%"} : {width:"unset"}}>
       <input
         className={bg}
         value={value}

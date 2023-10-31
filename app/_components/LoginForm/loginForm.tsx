@@ -48,6 +48,7 @@ export default function LoginForm() {
           name="Email Address"
           isBackground={true}
           type="email"
+          fullWidth={true}
           complete="email"
           value={email}
           error={error}
@@ -58,6 +59,7 @@ export default function LoginForm() {
           name="Password"
           isBackground={true}
           type="password"
+          fullWidth={true}
           complete="current-password"
           value={password}
           error={error}

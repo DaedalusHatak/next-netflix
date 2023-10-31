@@ -35,6 +35,7 @@ export default function SecondStep({ data, styles, showModal }: any) {
         name="Email Address"
         isBackground={true}
         type="email"
+        fullWidth={true}
         value={email}
         error={error}
         complete={email}
@@ -46,6 +47,7 @@ export default function SecondStep({ data, styles, showModal }: any) {
         name="Password"
         isBackground={true}
         type="password"
+        fullWidth={true}
         complete="new-password"
         value={password}
         error={error}
