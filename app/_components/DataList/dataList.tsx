@@ -1,7 +1,6 @@
 import CarouselList from "../CarouselList/carouselList";
 
 export default async function DataList({ query, lang, page }: any) {
-  console.log(page);
   const movie = await fetch(
     `https://api.themoviedb.org/${query}?language=${lang}&page=${
       page || 1

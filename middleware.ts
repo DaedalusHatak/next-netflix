@@ -31,33 +31,48 @@ export async function middleware(request: NextRequest) {
   const newUrl = new URL(`/${locale}${pathname}`, request.nextUrl);
   const baseUrl = new URL(`/login`, request.nextUrl);
   const safeUrl = new URL(`/browse`, request.nextUrl);
+  const idToken = request.cookies.get("name");
   try {
     //Checking if cookie exists and has value
-    const idToken = request.cookies.get("name")?.value;
     if (!idToken) {
-      if (request.nextUrl.pathname === "/browse" || request.nextUrl.pathname === "/YourAccount" ) {
+      if (
+        request.nextUrl.pathname === "/browse" ||
+        request.nextUrl.pathname === "/YourAccount"
+      ) {
         return NextResponse.redirect(baseUrl);
       }
+      return NextResponse.rewrite(newUrl);
     }
 
-//Validates cookie value
+    //Validates cookie value
     const res = await fetch(`http://localhost:3000/api/getCookie`, {
+      next: { revalidate: 0 },
+      cache: "no-store",
       method: "POST",
-      body: JSON.stringify(idToken),
+      body: JSON.stringify(idToken.value),
     });
     const json = await res.json();
-//Redirects to safe route when cookie has valid token
-    if (json.validToken && (request.nextUrl.pathname === "/login" ||
-    request.nextUrl.pathname === "/")) {
-        return NextResponse.redirect(safeUrl);
+    console.log("middleware", json.validToken.email);
+    //Redirects to safe route when cookie has valid token
+    if (
+      json.validToken &&
+      (request.nextUrl.pathname === "/login" ||
+        request.nextUrl.pathname === "/")
+    ) {
+      return NextResponse.redirect(safeUrl);
     }
 
-//Redirects to login route when cookie has invalid token
-   if(!json.validToken && (request.nextUrl.pathname === "/browse" || request.nextUrl.pathname === "/YourAccount")){
+    //Redirects to login route when cookie has invalid token
+    if (
+      !json.validToken &&
+      (request.nextUrl.pathname === "/browse" ||
+        request.nextUrl.pathname === "/YourAccount")
+    ) {
       return NextResponse.redirect(baseUrl);
-   }
-
-  } catch (e) {}
+    }
+  } catch (e) {
+    console.log("midd", e);
+  }
   return NextResponse.rewrite(newUrl);
 }
 

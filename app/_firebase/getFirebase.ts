@@ -7,6 +7,7 @@ import firebase_app from "./firebase-client";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
+import { firebaseAdmin } from "./firebase-admin";
 const auth = getAuth(firebase_app);
 
 async function SignInFirebase(email: string, password: string) {
@@ -18,13 +19,16 @@ async function SignInFirebase(email: string, password: string) {
   }
 }
 
-async function signOutUser() {
-  await signOut(auth);
-  const data = await fetch("/api/setCookie", {
+async function signOutUser(uid: string) {
+  await auth.signOut();
+  const data = await fetch("http://localhost:3000/api/setCookie", {
+    cache: "no-store",
     method: "POST",
     body: JSON.stringify(""),
   });
-  const res = data.json();
+
+  const res = await data.json();
+  console.log(res);
   return res;
 }
 async function createUser(email: string, password: string) {

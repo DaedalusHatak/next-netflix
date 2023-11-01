@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
   images: {
-    minimumCacheTTL:60,
+    minimumCacheTTL: 60,
     remotePatterns: [{ protocol: "https", hostname: "image.tmdb.org" }],
   },
   env: {

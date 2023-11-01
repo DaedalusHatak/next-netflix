@@ -1,4 +1,4 @@
-import {firebaseAdmin} from "@/app/_firebase/firebase-admin";
+import { firebaseAdmin } from "@/app/_firebase/firebase-admin";
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 const adminAuth = firebaseAdmin.auth();
@@ -11,8 +11,14 @@ export async function POST(req: NextRequest) {
     cookies().delete("name");
     return NextResponse.json("");
   }
-  
-  const cookieSession  = await firebaseAdmin.auth().createSessionCookie(cookie, {expiresIn: expiresSession})
-  cookies().set("name", cookieSession, { maxAge: expiresIn });
-  return NextResponse.json(cookies().get("name"));
+  const verifyCookie = await firebaseAdmin.auth().verifyIdToken(cookie, true);
+  if (verifyCookie) {
+    const cookieSession = await firebaseAdmin
+      .auth()
+      .createSessionCookie(cookie, { expiresIn: expiresSession });
+    cookies().set("name", cookieSession, { maxAge: expiresIn });
+    return NextResponse.json(cookies().get("name"));
+  } else {
+    return NextResponse.json(false);
+  }
 }

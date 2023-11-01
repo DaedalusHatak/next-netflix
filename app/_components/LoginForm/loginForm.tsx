@@ -20,14 +20,17 @@ export default function LoginForm() {
       setLoader(false);
       return;
     }
-    const id = await creds.getIdToken();
-    await fetch("/api/setCookie", { method: "POST", body: JSON.stringify(id) });
-    const isLoggedIn = await fetch("/api/getCookie", {
+    const id = await creds.getIdToken(true);
+    const setCookie = await fetch("/api/setCookie", {
+      next: { revalidate: 0 },
       method: "POST",
+      cache: "no-store",
       body: JSON.stringify(id),
     });
-    console.log(isLoggedIn);
-    router.push("/browse");
+    if (setCookie) {
+      // router.push("/YourAccount", {});
+      window.location.href = "/YourAccount";
+    }
   }
 
   return (

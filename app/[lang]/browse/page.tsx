@@ -1,21 +1,23 @@
-import NavBar from "@/app/_components/NavBar/NavBar";
-import firebaseAdmin from "@/app/_firebase/firebase-admin";
+import { firebaseAdmin } from "@/app/_firebase/firebase-admin";
 import { cookies } from "next/headers";
-
-import { useSelector } from "react-redux";
-
 import Client from "./client";
 import DataList from "@/app/_components/DataList/dataList";
 
 async function getData() {
+  let user;
   try {
-    if (!cookies().get("name")) return "Raiden.webp";
-    const user = await firebaseAdmin
-      .auth()
-      .verifyIdToken(cookies().get("name")!.value);
-    return user.picture ? user.picture : "Raiden.webp";
+    const cookie = cookies().get("name")!.value;
+    const res = await fetch(`http://localhost:3000/api/getCookie`, {
+      cache: "no-store",
+      method: "POST",
+      body: JSON.stringify(cookie),
+    });
+    const json = await res.json();
+    user = await json.validToken;
+    return user;
   } catch (e) {
-    return "Raiden.webp";
+    console.log(e);
+    return e;
   }
 }
 

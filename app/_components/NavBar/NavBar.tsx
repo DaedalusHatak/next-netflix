@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./NavBar.module.scss";
 import { signOutUser } from "@/app/_firebase/getFirebase";
+import { getAuth } from "firebase/auth";
+import firebase_app from "@/app/_firebase/firebase-client";
+import { useRouter } from "next/navigation";
 
 export default function NavBar({ user }: any) {
   const [isHoveredMenu, setIsHoveredMenu] = useState(false);
@@ -13,7 +16,7 @@ export default function NavBar({ user }: any) {
   const [scroll, setScroll] = useState(0);
   const [width, setwidth] = useState(0);
   const [profileCounter, setProfileCounter] = useState(0);
-
+  const router = useRouter();
   useEffect(() => {
     if (isHoveredMenu === true && wasButton) {
       const li = menuDropdown.current!.children[
@@ -32,6 +35,11 @@ export default function NavBar({ user }: any) {
       window.addEventListener("scroll", updateNavOnScroll);
     }
   }, [profileCounter, isHoveredMenu, isHoveredProfile, wasButton]);
+
+  async function signOut() {
+    const answer = await signOutUser(user.uid);
+    router.push("/login");
+  }
   function updateNavOnScroll() {
     setScroll(window.scrollY);
     setIsHoveredMenu(false);
@@ -268,7 +276,7 @@ export default function NavBar({ user }: any) {
           aria-controls="menu"
         >
           <Image
-            src={`/assets/profile/` + user}
+            src={`/assets/profile/` + user.photoURL}
             height={40}
             width={40}
             alt="Profile Photo"
@@ -308,7 +316,7 @@ export default function NavBar({ user }: any) {
               className={styles.a}
               href="/"
               scroll={false}
-              onClick={() => signOutUser()}
+              onClick={() => signOut()}
             >
               Logout
             </Link>
