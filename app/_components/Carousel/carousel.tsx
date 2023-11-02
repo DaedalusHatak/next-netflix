@@ -111,7 +111,7 @@ export default function Carousel({
       if (!touchDevice && !isTransitioning) {
         hoverTimer = setTimeout(() => {
           if (e.target) {
-            const obj = target.getBoundingClientRect();
+            const obj = target.getBoundingClientRect().toJSON();
             const pos = {
               x: obj.x,
               y: obj.y,

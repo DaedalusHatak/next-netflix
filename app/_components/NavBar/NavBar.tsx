@@ -8,7 +8,7 @@ import { signOutUser } from "@/app/_firebase/getFirebase";
 import { getAuth } from "firebase/auth";
 import firebase_app from "@/app/_firebase/firebase-client";
 import { useRouter } from "next/navigation";
-
+import { useSelector } from "react-redux";
 export default function NavBar({ user }: any) {
   const [isHoveredMenu, setIsHoveredMenu] = useState(false);
   const [isHoveredProfile, setIsHoveredProfile] = useState(false);
@@ -17,8 +17,7 @@ export default function NavBar({ user }: any) {
   const [width, setwidth] = useState(0);
   const [profileCounter, setProfileCounter] = useState(0);
   const router = useRouter();
-
-
+  const avatar = useSelector((state: any) => state.avatar.value.photoURL);
   useEffect(() => {
     if (isHoveredMenu === true && wasButton) {
       const li = menuDropdown.current!.children[
@@ -278,7 +277,7 @@ export default function NavBar({ user }: any) {
           aria-controls="menu"
         >
           <Image
-            src={`/assets/profile/` + user.photoURL}
+            src={`/assets/profile/${avatar ? avatar : user.photoURL}`}
             height={40}
             width={40}
             alt="Profile Photo"

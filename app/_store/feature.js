@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   value: {
     slide: null,
-    position: { x: Number, y: Number, width: Number },
+    position: null,
   },
 };
 
