@@ -17,6 +17,8 @@ export default function NavBar({ user }: any) {
   const [width, setwidth] = useState(0);
   const [profileCounter, setProfileCounter] = useState(0);
   const router = useRouter();
+
+
   useEffect(() => {
     if (isHoveredMenu === true && wasButton) {
       const li = menuDropdown.current!.children[

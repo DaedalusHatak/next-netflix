@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SignInFirebase } from "@/app/_firebase/getFirebase";
 import BaseModal from "../BaseModal/BaseModal";
+import { getAuth, updateProfile } from "firebase/auth";
+import firebase_app from "@/app/_firebase/firebase-client";
 export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -15,6 +17,10 @@ export default function LoginForm() {
   async function Sign(emailInput: string, passwordInput: string) {
     setLoader(true);
     const creds = await SignInFirebase(emailInput, passwordInput);
+    console.log(creds)
+   if(!creds.photoURL){
+    await updateProfile(creds,{photoURL:'Raiden.webp'})
+   }
     if (!creds.accessToken) {
       setIsModal(creds);
       setLoader(false);

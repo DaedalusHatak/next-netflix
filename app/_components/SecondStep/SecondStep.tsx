@@ -1,7 +1,8 @@
 import { FormEvent, useState } from "react";
 import BaseInput from "../BaseInput/BaseInput";
 import { createUser } from "@/app/_firebase/getFirebase";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; 
+
 export default function SecondStep({ data, styles, showModal }: any) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(data || "");
@@ -10,12 +11,14 @@ export default function SecondStep({ data, styles, showModal }: any) {
   async function createUserForm(e: FormEvent) {
     e.preventDefault();
     const status = await createUser(email, password);
+
     if (status === true) {
       showModal(status);
     } else {
       console.log(status);
       showModal(status);
     }
+
   }
 
   return (

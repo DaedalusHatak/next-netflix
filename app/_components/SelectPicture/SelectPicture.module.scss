@@ -1,0 +1,41 @@
+.change-pictures {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(82px, 1fr));
+    gap: 10px;
+    max-width: 600px;
+    margin-inline: auto;
+    margin-top: 20px;
+    justify-content: center;
+    justify-items: center;
+  }
+  .profile-pictures {
+    background-color: #5555554d;
+    cursor: pointer;
+
+    border-radius: 5px;
+  }
+  .selected {
+    border: 1px solid #ffffff;
+  }
+  .profile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: horizontal-tb !important;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    border: 0px;
+    max-width: 200px;
+    justify-self: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    height: 100%;
+    min-height: 2.5rem;
+    max-height: 3.19rem;
+    padding: 1.2rem 1rem;
+    background: rgb(51, 26, 187, 0.9);
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
