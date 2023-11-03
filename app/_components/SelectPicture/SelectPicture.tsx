@@ -11,7 +11,7 @@ export default function SelectPicture({ avatars, profile }: any) {
   const dispatch = useDispatch();
   const avatar = useSelector((state: any) => state.avatar.value.photoURL);
   function selectWithSpace(e: any, selectedPicture: string) {
-    if (e.key === " ") {
+    if (e.key === " " || e.key === "Enter") {
       e.preventDefault();
       setSelectedImage(selectedPicture);
     }

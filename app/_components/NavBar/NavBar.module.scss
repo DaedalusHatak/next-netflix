@@ -77,6 +77,9 @@
   width: 100%;
   margin: 0 auto;
 }
+.background{
+  background-color: rgba(51, 26, 187, 0.9);;
+}
 .navbar {
   display: grid;
   grid-template-columns: max-content 1fr max-content;
@@ -182,11 +185,11 @@
 }
 @media screen and (min-width: 1280px) {
   .navbar {
-    max-width: calc(83.33333333333334% - 6rem);
+    max-width: calc(80% - 12rem);
   }
 }
 @media screen and (min-width: 1920px) {
   .navbar {
-    max-width: calc(66.66666666666666% - 6rem);
+    max-width: calc(60% - 12rem);
   }
 }

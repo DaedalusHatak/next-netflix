@@ -203,21 +203,7 @@ section::after {
   }
 }
 
-@media screen and (min-width: 600px) {
-  nav {
-    max-width: calc(100% - 4rem);
-  }
-}
-@media screen and (min-width: 1280px) {
-  nav {
-    max-width: calc(83.33333333333334% - 6rem);
-  }
-}
-@media screen and (min-width: 1920px) {
-  nav {
-    max-width: calc(66.66666666666666% - 6rem);
-  }
-}
+
 .info {
   color: gold;
 

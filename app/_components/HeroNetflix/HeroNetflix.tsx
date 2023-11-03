@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import GetStartedForm from "../GetStartedForm/GetStartedForm";
-
+import styles from "./HeroNetflix.module.scss"
 export default function HeroNetflix() {
   return (
     <>
@@ -15,7 +15,7 @@ export default function HeroNetflix() {
 
       <div className="shadow-hero-image"></div>
       <div className="hero-wrapper">
-        <nav>
+        <nav className={styles.nav}>
           <span className="logo-span">
             <Image
               src="/assets/daedalus.png"
