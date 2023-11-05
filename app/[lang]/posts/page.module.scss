@@ -1,108 +1,225 @@
 .container {
-    width: 70vw;
-    margin: 0 auto;
-    padding-top: 50px;
-    padding-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    max-width: 700px;
-    margin: 0 auto;
-    justify-content: center;
-  }
-
-  .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0.5rem auto;
-    flex: 0 0 auto;
-    border: 0px;
-    width: max-content;
-    font-size: 1rem;
-    font-weight: 400;
-
-    padding: 0.75rem 2.5rem;
-    background: red;
-    cursor: pointer;
-    color: rgb(255, 255, 255);
-    border-radius: 5px;
-  }
-.new-post-textarea{
-    position: relative;
+  width: 70vw;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin: 0 auto;
+  justify-content: center;
 }
-  .textarea {
-    display: block;
-    color: inherit;
-    padding: 1.5rem 1rem 0.5rem;
-    border: none;
-    border-radius: 1rem;
-    resize: none;
-    overflow-y: hidden;
-    height: auto;
-    width: 70vw;
-    max-width: 700px;
-    background-clip: padding-box;
-    appearance: none;
-    background-color: rgba(172, 172, 172, 0.425) !important;
-  }
-  .label {
-    width: max-content;
-    position: absolute;
-    z-index: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition-property: top, font-size, line-height;
-    transition-duration: 250ms;
-    pointer-events: none;
-    font-size: 0.85rem;
-    transition-timing-function: cubic-bezier(0.9, 0, 0.51, 1);
-    opacity: 0.7;
-    left: 1rem;
-    line-height: 1.5rem;
-    right: 1rem;
-    top: 1rem;
-  }
 
-  .label-active {
-    position: absolute;
-    z-index: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition-property: top, font-size, line-height;
-    transition-duration: 250ms;
-    pointer-events: none;
-    font-size: 0.75rem;
-    transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-    opacity: 0.7;
-    left: 1rem;
-    line-height: 1.125rem;
-    right: 1rem;
-    top: 0.5rem;
-  }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem auto;
+  flex: 0 0 auto;
+  border: 0px;
+  width: max-content;
+  font-size: 1rem;
+  font-weight: 400;
 
-  .background:-webkit-autofill {
-    -webkit-text-size-adjust: auto;
-    -webkit-text-fill-color: #fff;
-    box-shadow: inset #333 0 0 0 700px;
-    -webkit-background-clip: text;
-  }
+  padding: 0.75rem 2.5rem;
+  background: red;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+.new-post-textarea {
+  position: relative;
+}
+.textarea {
+  display: block;
+  color: inherit;
+  padding: 1.5rem 1rem 0.5rem;
+  border: none;
+  border-radius: 1rem;
+  resize: none;
+  overflow-y: hidden;
+  height: auto;
+  width: 70vw;
+  max-width: 700px;
+  background-clip: padding-box;
+  appearance: none;
+  background-color: rgba(172, 172, 172, 0.425) !important;
+}
+.label {
+  width: max-content;
+  position: absolute;
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition-property: top, font-size, line-height;
+  transition-duration: 250ms;
+  pointer-events: none;
+  font-size: 0.85rem;
+  transition-timing-function: cubic-bezier(0.9, 0, 0.51, 1);
+  opacity: 0.7;
+  left: 1rem;
+  line-height: 1.5rem;
+  right: 1rem;
+  top: 1rem;
+}
 
-  .textarea:-webkit-autofill + .label {
-    position: absolute;
-    z-index: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition-property: top, font-size, line-height;
-    transition-duration: 250ms;
-    pointer-events: none;
-    font-size: 0.75rem;
-    transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-    opacity: 0.7;
-    left: 1rem;
-    line-height: 1.125rem;
-    right: 1rem;
-    top: 0.5rem;
-  }
+.label-active {
+  position: absolute;
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition-property: top, font-size, line-height;
+  transition-duration: 250ms;
+  pointer-events: none;
+  font-size: 0.75rem;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+  opacity: 0.7;
+  left: 1rem;
+  line-height: 1.125rem;
+  right: 1rem;
+  top: 0.5rem;
+}
+
+.background:-webkit-autofill {
+  -webkit-text-size-adjust: auto;
+  -webkit-text-fill-color: #fff;
+  box-shadow: inset #333 0 0 0 700px;
+  -webkit-background-clip: text;
+}
+
+.textarea:-webkit-autofill + .label {
+  position: absolute;
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition-property: top, font-size, line-height;
+  transition-duration: 250ms;
+  pointer-events: none;
+  font-size: 0.75rem;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+  opacity: 0.7;
+  left: 1rem;
+  line-height: 1.125rem;
+  right: 1rem;
+  top: 0.5rem;
+}
+
+.container {
+  width: 70vw;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: left;
+
+  padding-bottom: 20px;
+}
+
+.fade-enter-active,
+.fade-move,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.fade-leave-active {
+  position: absolute;
+}
+.post {
+  position: relative;
+}
+.posts {
+  background-color: rgb(53, 53, 88, 1);
+
+  border-radius: 5px;
+  border: 1px solid #86868b;
+  max-width: 700px;
+  width: 70vw;
+  padding: 1rem 1.25rem 2rem 1.25rem;
+  font-size: 1.15rem;
+  margin: 0.6rem auto;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.new-posts {
+  padding-bottom: 5rem;
+  max-width: 700px;
+  width: 70vw;
+}
+.user {
+  display: flex;
+  color: #f7bc51;
+  gap: 15px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.time {
+  color: rgb(170, 170, 170);
+}
+.show-more-button {
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  position: absolute;
+  padding: 0.3rem;
+  height: max-content;
+  right: 0;
+  top: -10px;
+  z-index: 1;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem auto;
+  flex: 0 0 auto;
+  border: 0px;
+  width: max-content;
+  font-size: 1rem;
+  font-weight: 400;
+
+  padding: 0.75rem 2.5rem;
+  background: red;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+.delete-button {
+  background-color: rgba(255, 0, 0, 1);
+
+  margin: 0;
+  position: absolute;
+  padding: 0.3rem 1.2rem;
+
+  right: 65px;
+  top: 35px;
+}
+.delete-menu {
+  width: 150px;
+  height: 70px;
+  margin: 0;
+  position: absolute;
+  padding: 0.3rem;
+
+  right: -65px;
+  top: -15px;
+}
