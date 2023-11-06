@@ -7,7 +7,6 @@ import { signOutUser } from "@/app/_firebase/getFirebase";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
-
 export default function NavBar({ user }: any) {
   const [isHoveredMenu, setIsHoveredMenu] = useState(false);
   const [isHoveredProfile, setIsHoveredProfile] = useState(false);
@@ -73,7 +72,6 @@ export default function NavBar({ user }: any) {
     }, 200);
   }
   function PreviousArrowKey() {
-
     if (profileCounter > 0) {
       setProfileCounter(profileCounter - 1);
     }
@@ -97,7 +95,6 @@ export default function NavBar({ user }: any) {
     }
   }
   function handleKeys(event: any) {
-
     setWasButton(true);
 
     if (event.altKey && event.ctrlKey) {
@@ -146,14 +143,16 @@ export default function NavBar({ user }: any) {
 
     if (
       event.key === "ArrowDown" ||
-      (event.key === "Tab" && !event.shiftKey && (isHoveredMenu || isHoveredProfile))
+      (event.key === "Tab" &&
+        !event.shiftKey &&
+        (isHoveredMenu || isHoveredProfile))
     ) {
       if (
         (isHoveredProfile && profileCounter !== 2) ||
         (isHoveredMenu && profileCounter !== 3)
       ) {
         event.preventDefault();
-      } 
+      }
       NextArrowKey();
       return;
     }
@@ -166,15 +165,17 @@ export default function NavBar({ user }: any) {
     }
   }
 
-  function resetKeys(){
-    console.log(profileCounter)
-    if((isHoveredMenu || (profileCounter === 3 && isHoveredProfile)) || profileCounter === 0){
-    
-      setIsHoveredMenu(false)
-      setIsHoveredProfile(false)
-      setProfileCounter(0)
+  function resetKeys() {
+    console.log(profileCounter);
+    if (
+      isHoveredMenu ||
+      (profileCounter === 3 && isHoveredProfile) ||
+      profileCounter === 0
+    ) {
+      setIsHoveredMenu(false);
+      setIsHoveredProfile(false);
+      setProfileCounter(0);
     }
-
   }
 
   const account = useRef<HTMLAnchorElement | null>(null);
@@ -227,7 +228,7 @@ export default function NavBar({ user }: any) {
           onMouseOver={() => handleHoverMenu()}
           onMouseLeave={() => handleUnhoverMenu()}
           onKeyDown={handleKeys}
-          onFocus={()=> resetKeys()}
+          onFocus={() => resetKeys()}
           className={styles.button}
         >
           Browse <span>▼</span>
@@ -284,7 +285,7 @@ export default function NavBar({ user }: any) {
           onMouseOver={() => handleHoverProfile()}
           onMouseLeave={() => handleUnhoverProfile()}
           onKeyDown={handleKeys}
-          onFocus={()=> resetKeys()}
+          onFocus={() => resetKeys()}
           className={styles.profile}
           aria-haspopup="true"
           aria-controls="menu"
@@ -296,48 +297,49 @@ export default function NavBar({ user }: any) {
             alt="Profile Photo"
           />
         </div>
-      </div>
-      {isHoveredProfile && (
-        <div
-          onMouseOver={() => handleHoverProfile()}
-          onMouseLeave={() => handleUnhoverProfile()}
-          className={styles["mobile-list"]}
-        >
-          <ul
-            ref={dropdown}
-            className={`${styles.account} ${styles.ul}`}
+
+        {isHoveredProfile && (
+          <div
+            onMouseOver={() => handleHoverProfile()}
+            onMouseLeave={() => handleUnhoverProfile()}
+            className={styles["mobile-list"]}
           >
-            <Link
-              onKeyDown={handleKeys}
-              className={styles.a}
-              ref={account}
-              href="/YourAccount"
-              scroll={false}
+            <ul
+              ref={dropdown}
+              className={`${styles.account} ${styles.ul}`}
             >
-              Account
-            </Link>
-            <Link
-              onKeyDown={handleKeys}
-              className={styles.a}
-              href="/posts"
-              scroll={false}
-            >
-              Posts
-            </Link>
-            <Link
-              id="lastProfile"
-              onKeyDown={handleKeys}
-              onBlur={()=> resetKeys()}
-              className={styles.a}
-              href="/"
-              scroll={false}
-              onClick={() => signOut()}
-            >
-              Logout
-            </Link>
-          </ul>
-        </div>
-      )}
+              <Link
+                onKeyDown={handleKeys}
+                className={styles.a}
+                ref={account}
+                href="/YourAccount"
+                scroll={false}
+              >
+                Account
+              </Link>
+              <Link
+                onKeyDown={handleKeys}
+                className={styles.a}
+                href="/posts"
+                scroll={false}
+              >
+                Posts
+              </Link>
+              <Link
+                id="lastProfile"
+                onKeyDown={handleKeys}
+                onBlur={() => resetKeys()}
+                className={styles.a}
+                href="/"
+                scroll={false}
+                onClick={() => signOut()}
+              >
+                Logout
+              </Link>
+            </ul>
+          </div>
+        )}
+      </div>
     </nav>
   );
 }

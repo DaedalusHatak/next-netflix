@@ -48,7 +48,7 @@
   font-size: 12px;
 }
 .a {
-  display:block;
+  display: block;
   text-align: center;
   cursor: pointer;
   transition: all 250ms;
@@ -77,10 +77,16 @@
   width: 100%;
   margin: 0 auto;
 }
-.background{
-  background-color: rgba(51, 26, 187, 0.9);;
+.background {
+  background-color: rgba(51, 26, 187, 0.9);
+}
+.mobile-list {
+  top: 100%;
+  position: absolute;
+  width: 100%;
 }
 .navbar {
+  position: relative;
   display: grid;
   grid-template-columns: max-content 1fr max-content;
   gap: 10px;
