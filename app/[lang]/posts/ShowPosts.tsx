@@ -2,7 +2,6 @@
 
 import {
   Timestamp,
-  addDoc,
   collection,
   deleteDoc,
   doc,
@@ -10,20 +9,24 @@ import {
   onSnapshot,
   orderBy,
   query,
-  serverTimestamp,
 } from "firebase/firestore";
-import { useEffect, useRef, useState,MouseEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import IconInfo from "./IconInfo";
-import { AnimatePresence, motion, usePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function ShowPosts({ user, styles }: any) {
   const firestore = getFirestore();
-  const [isPresent, safeToRemove] = usePresence()
-
+  const [initial, setInitial] = useState<any>({ opacity: 1, x: 0 });
   const [firestoreDatabase, setFirestoreDatabase] = useState<any[]>([]);
   const [showMoreInfo, setShowMoreInfo] = useState<any>(null);
 
-const menu = useRef<HTMLDivElement | null>(null);
+  const menu = useRef<HTMLDivElement | null>(null);
+
+  const variants = {
+    initial: initial,
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 100 },
+  };
 
   const coll = query(collection(firestore, "avatar"), orderBy("createdAt"));
   useEffect(() => {
@@ -35,14 +38,16 @@ const menu = useRef<HTMLDivElement | null>(null);
           // setFirestoreDatabase((old) => [data, ...old]);
           return;
         } else if (snapshot.type === "added") {
+          console.log(initial);
           data.id = snapshot.doc.id;
           setFirestoreDatabase((old) => [data, ...old]);
-        } else {
-          // newArr.splice(indexToDelete, 1);
-          // setFirestoreDatabase(newArr);
         }
       });
+      setTimeout(() => {
+        setInitial({ opacity: 0, x: -100 });
+      }, 1);
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -93,13 +98,15 @@ const menu = useRef<HTMLDivElement | null>(null);
     }
   }
 
-document.addEventListener("click", handleMenu,true)
-function handleMenu(e:globalThis.MouseEvent){
-if(showMoreInfo !== null && !menu.current?.contains(e.target as Node)){
-setShowMoreInfo(null)
-}
+  if (typeof document !== "undefined") {
+    document.addEventListener("click", handleMenu, true);
+  }
 
-}
+  function handleMenu(e: globalThis.MouseEvent) {
+    if (showMoreInfo !== null && !menu.current?.contains(e.target as Node)) {
+      setShowMoreInfo(null);
+    }
+  }
 
   return (
     <>
@@ -113,60 +120,60 @@ setShowMoreInfo(null)
         </button> */}
       </div>
 
-    <section className={`${styles["section"]}`}>
-    <ul>
-    <AnimatePresence initial={false}>
-        {firestoreDatabase.map((post, index) => (
-          <motion.li
-          key={post.id}
-         
-          initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-         transition={{duration: 0.35}}
-            className={styles["posts"]}
-          >
-            <div className={styles["post"]}>
-              <div className={styles["user"]}>
-                {post.user}
-                <span className={styles["time"]}>
-                  {" "}
-                  {showTime(post.createdAt)}{" "}
-                </span>
-              </div>
-              {post.post}
-{post.user === user.email && (
-  <>
-                <button
-                // v-if="userProfile.email === post.user"
-                // @click="showMoreInfo = post"
-                onClick={()=>setShowMoreInfo(post)}
-                className={`${styles["show-more-button"]}`}
+      <section className={`${styles["section"]}`}>
+        <ul>
+          <AnimatePresence initial={false}>
+            {firestoreDatabase.map((post, index) => (
+              <motion.li
+                key={post.id}
+                initial={initial}
+                animate="animate"
+                exit="exit"
+                variants={variants}
+                transition={{ duration: 0.35 }}
+                className={styles["posts"]}
               >
-                <IconInfo />
-              </button>
-{showMoreInfo === post && 
-              <div
-              // v-if="showMoreInfo === post"
-              ref={menu}
-              className={styles["delete-menu"]}
-            >
-              <button
-                onClick={() => deleteDocuments(post, index)}
-                className={`${styles["delete-button"]}  ${styles["button"]}`}
-              >
-                Delete
-              </button>
-            </div>}
-              </>
-)}
-            </div>
-          </motion.li>
-        ))}
-         </AnimatePresence>
-    </ul>
+                <div className={styles["post"]}>
+                  <div className={styles["user"]}>
+                    {post.user}
+                    <span className={styles["time"]}>
+                      {" "}
+                      {showTime(post.createdAt)}{" "}
+                    </span>
+                  </div>
+                  {post.post}
+                  {post.user === user.email && (
+                    <>
+                      <button
+                        // v-if="userProfile.email === post.user"
+                        // @click="showMoreInfo = post"
+                        onClick={() => setShowMoreInfo(post)}
+                        className={`${styles["show-more-button"]}`}
+                      >
+                        <IconInfo />
+                      </button>
+                      {showMoreInfo === post && (
+                        <div
+                          // v-if="showMoreInfo === post"
+                          ref={menu}
+                          className={styles["delete-menu"]}
+                        >
+                          <button
+                            onClick={() => deleteDocuments(post, index)}
+                            className={`${styles["delete-button"]}  ${styles["button"]}`}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              </motion.li>
+            ))}
+          </AnimatePresence>
+        </ul>
       </section>
-   
     </>
   );
 }
