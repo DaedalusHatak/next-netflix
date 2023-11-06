@@ -3,11 +3,18 @@ import { cookies } from "next/headers";
 import Client from "./client";
 import DataList from "@/app/_components/DataList/dataList";
 
+const env = process.env.NODE_ENV;
+
+const page =
+  env === "development"
+    ? "http://localhost:3000/"
+    : "https://next-app-neon-eta.vercel.app/";
+
 async function getData() {
   let user;
   try {
     const cookie = cookies().get("name")!.value;
-    const res = await fetch(`http://localhost:3000/api/getCookie`, {
+    const res = await fetch(`${page}api/getCookie`, {
       cache: "no-store",
       method: "POST",
       body: JSON.stringify(cookie),
