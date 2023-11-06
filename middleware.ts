@@ -1,7 +1,12 @@
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextResponse, NextRequest } from "next/server";
+const env = process.env.NODE_ENV;
 
+const page =
+  env === "development"
+    ? "http://localhost:3000/"
+    : "https://next-app-neon-eta.vercel.app/";
 const locales = [
   "en-US",
   "pl-PL",
@@ -45,7 +50,7 @@ export async function middleware(request: NextRequest) {
     }
 
     //Validates cookie value
-    const res = await fetch(`http://localhost:3000/api/getCookie`, {
+    const res = await fetch(`${page}/api/getCookie`, {
       next: { revalidate: 0 },
       cache: "no-store",
       method: "POST",
