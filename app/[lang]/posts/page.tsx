@@ -30,7 +30,7 @@ export default async function Page({
   return (
     <>
       <NavBar user={user}></NavBar>
-      <h1>Posts with realtime update</h1>
+      <h1 className={styles["h1"]}>Posts with realtime update</h1>
       <AddPosts
         user={user}
         styles={styles}

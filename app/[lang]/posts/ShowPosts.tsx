@@ -12,16 +12,21 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState,MouseEvent } from "react";
 import IconInfo from "./IconInfo";
+import { AnimatePresence, motion, usePresence } from "framer-motion";
 
 export default function ShowPosts({ user, styles }: any) {
-  const [firestoreDatabase, setFirestoreDatabase] = useState<any[]>([]);
-  const arr: any = [];
   const firestore = getFirestore();
+  const [isPresent, safeToRemove] = usePresence()
+
+  const [firestoreDatabase, setFirestoreDatabase] = useState<any[]>([]);
+  const [showMoreInfo, setShowMoreInfo] = useState<any>(null);
+
+const menu = useRef<HTMLDivElement | null>(null);
+
   const coll = query(collection(firestore, "avatar"), orderBy("createdAt"));
   useEffect(() => {
-    const pushArr: any = [];
     const unsub = onSnapshot(coll, (doc) => {
       doc.docChanges().forEach(async (snapshot) => {
         let data = snapshot.doc.data();
@@ -31,8 +36,6 @@ export default function ShowPosts({ user, styles }: any) {
           return;
         } else if (snapshot.type === "added") {
           data.id = snapshot.doc.id;
-          console.log("chage");
-          arr.push(data);
           setFirestoreDatabase((old) => [data, ...old]);
         } else {
           // newArr.splice(indexToDelete, 1);
@@ -40,7 +43,6 @@ export default function ShowPosts({ user, styles }: any) {
         }
       });
     });
-    console.log(firestoreDatabase);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,7 +76,7 @@ export default function ShowPosts({ user, styles }: any) {
     }
   }
 
-  async function deleteDocuments(element: any, index: any) {
+  async function deleteDocuments(element: any, index: number) {
     console.log(element);
     const firestore = getFirestore();
     try {
@@ -91,23 +93,37 @@ export default function ShowPosts({ user, styles }: any) {
     }
   }
 
+document.addEventListener("click", handleMenu,true)
+function handleMenu(e:globalThis.MouseEvent){
+if(showMoreInfo !== null && !menu.current?.contains(e.target as Node)){
+setShowMoreInfo(null)
+}
+
+}
+
   return (
     <>
       <div className={styles["container"]}>
-        <button
+        {/* <button
           //   v-if="showNewElements"
           //   @click="showElements()"
           className={`${styles["new-posts"]}  ${styles["button"]}`}
         >
           Click me to show new Elements newPosts.length
-        </button>
+        </button> */}
       </div>
-      <section className={`${styles["section"]}`}>
+
+    <section className={`${styles["section"]}`}>
+    <ul>
+    <AnimatePresence initial={false}>
         {firestoreDatabase.map((post, index) => (
-          <div
-            key={index}
-            // v-for="post in firestoreDatabase"
-            // :key="post.id"
+          <motion.li
+          key={post.id}
+         
+          initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+         transition={{duration: 0.35}}
             className={styles["posts"]}
           >
             <div className={styles["post"]}>
@@ -119,29 +135,38 @@ export default function ShowPosts({ user, styles }: any) {
                 </span>
               </div>
               {post.post}
-              <button
+{post.user === user.email && (
+  <>
+                <button
                 // v-if="userProfile.email === post.user"
                 // @click="showMoreInfo = post"
+                onClick={()=>setShowMoreInfo(post)}
                 className={`${styles["show-more-button"]}`}
               >
                 <IconInfo />
               </button>
+{showMoreInfo === post && 
               <div
-                // v-if="showMoreInfo === post"
-                // ref="menu"
-                className={styles["delete-menu"]}
+              // v-if="showMoreInfo === post"
+              ref={menu}
+              className={styles["delete-menu"]}
+            >
+              <button
+                onClick={() => deleteDocuments(post, index)}
+                className={`${styles["delete-button"]}  ${styles["button"]}`}
               >
-                <button
-                  onClick={() => deleteDocuments(post, index)}
-                  className={`${styles["delete-button"]}  ${styles["button"]}`}
-                >
-                  Delete
-                </button>
-              </div>
+                Delete
+              </button>
+            </div>}
+              </>
+)}
             </div>
-          </div>
+          </motion.li>
         ))}
+         </AnimatePresence>
+    </ul>
       </section>
+   
     </>
   );
 }

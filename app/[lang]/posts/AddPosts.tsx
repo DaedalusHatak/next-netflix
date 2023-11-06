@@ -3,6 +3,7 @@ import {
   FormEvent,
   FormEventHandler,
   TextareaHTMLAttributes,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -20,10 +21,15 @@ export default function AddPosts({ user, styles }: any) {
   const [active, setActive] = useState(false);
   const textarea = useRef<HTMLTextAreaElement | null>(null);
 
+useEffect(()=>{
+
+},[post])
+
   function autoResize(event: any) {
     textarea.current!.style.height = "auto";
     textarea.current!.style.height = textarea.current!.scrollHeight + "px";
     setPost(event.target.value);
+
   }
 
   async function addData(e: any, bruh: string) {
@@ -41,15 +47,17 @@ export default function AddPosts({ user, styles }: any) {
   }
   return (
     <>
-      {post}
       <div className={styles["container"]}>
         <div className={styles["new-post-textarea"]}>
           <textarea
-            className={styles["textarea"]}
+            className={`${styles["textarea"]}`}
             id="post-area"
             ref={textarea}
-            onInput={autoResize}
             value={post}
+            onInput={autoResize}
+            onFocus={()=>setActive(true)}
+            onBlur={()=> post === "" ? setActive(false) : ''}
+          
             // @focusout="focusOut"
             // @change="post === '' ? (isActive = false) : (isActive = true)"
             // @focusin="focusIn"
@@ -58,7 +66,7 @@ export default function AddPosts({ user, styles }: any) {
           <label
             // :className="isActive ? 'label-active' : 'label'"
             // for="post-area"
-            className={styles["label"]}
+            className={`${styles["label"]}  ${active ? styles["label-active"] : ''}`}
           >
             Add a new post
           </label>
