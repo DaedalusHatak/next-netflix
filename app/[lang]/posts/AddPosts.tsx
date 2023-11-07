@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { createUser } from "@/app/_firebase/getFirebase";
+import { createUser } from "@/app/utils/firebase/getFirebase";
 import { useRouter } from "next/navigation";
 import {
   addDoc,
@@ -21,15 +21,12 @@ export default function AddPosts({ user, styles }: any) {
   const [active, setActive] = useState(false);
   const textarea = useRef<HTMLTextAreaElement | null>(null);
 
-useEffect(()=>{
-
-},[post])
+  useEffect(() => {}, [post]);
 
   function autoResize(event: any) {
     textarea.current!.style.height = "auto";
     textarea.current!.style.height = textarea.current!.scrollHeight + "px";
     setPost(event.target.value);
-
   }
 
   async function addData(e: any, bruh: string) {
@@ -55,9 +52,9 @@ useEffect(()=>{
             ref={textarea}
             value={post}
             onInput={autoResize}
-            onFocus={()=>setActive(true)}
-            onBlur={()=> post === "" ? setActive(false) : ''}
-          
+            onFocus={() => setActive(true)}
+            onBlur={() => (post === "" ? setActive(false) : "")}
+
             // @focusout="focusOut"
             // @change="post === '' ? (isActive = false) : (isActive = true)"
             // @focusin="focusIn"
@@ -66,7 +63,9 @@ useEffect(()=>{
           <label
             // :className="isActive ? 'label-active' : 'label'"
             // for="post-area"
-            className={`${styles["label"]}  ${active ? styles["label-active"] : ''}`}
+            className={`${styles["label"]}  ${
+              active ? styles["label-active"] : ""
+            }`}
           >
             Add a new post
           </label>

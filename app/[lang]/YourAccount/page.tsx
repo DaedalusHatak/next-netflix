@@ -2,38 +2,19 @@ import NavBar from "@/app/_components/NavBar/NavBar";
 import AccountDetails from "./AccountDetails";
 
 import Client from "./Client";
-import { firebaseAdmin } from "@/app/_firebase/firebase-admin";
-import firebase_app from "@/app/_firebase/firebase-client";
+import { firebaseAdmin } from "@/app/utils/firebase/firebase-admin";
+import firebase_app from "@/app/utils/firebase/firebase-client";
 import styles from "./page.module.scss";
 import { cookies } from "next/headers";
+import getUser from "@/app/_utils/methods/getUser";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const env = process.env.NODE_ENV;
-
-const page =
-  env === "development"
-    ? "http://localhost:3000/"
-    : "https://next-app-neon-eta.vercel.app/";
-
-async function getData() {
-  try {
-    const cookie = cookies().get("name")!.value;
-    const res = await fetch(`${page}api/getCookie`, {
-      cache: "no-store",
-      method: "POST",
-      body: JSON.stringify(cookie),
-    });
-    const json = await res.json();
-    const user = await json.validToken;
-    return user;
-  } catch (e) {
-    console.log(e);
-  }
-}
+const page = process.env.page as string;
 
 export default async function Page() {
-  const user = await getData();
+  const cookie = cookies().get("name")!.value;
+  const user = await getUser(page, cookie);
 
   console.log("page", user.email);
   // const sessionVerifier = await firebaseAdmin

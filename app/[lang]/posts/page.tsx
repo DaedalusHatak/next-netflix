@@ -3,38 +3,17 @@ import { cookies } from "next/headers";
 import AddPosts from "./AddPosts";
 import styles from "./page.module.scss";
 import ShowPosts from "./ShowPosts";
+import getUser from "@/app/_utils/methods/getUser";
 
-const env = process.env.NODE_ENV;
-
-const page =
-  env === "development"
-    ? "http://localhost:3000/"
-    : "https://next-app-neon-eta.vercel.app/";
-
-async function getData() {
-  let user;
-  try {
-    const cookie = cookies().get("name")!.value;
-    const res = await fetch(`${page}api/getCookie`, {
-      cache: "no-store",
-      method: "POST",
-      body: JSON.stringify(cookie),
-    });
-    const json = await res.json();
-    user = await json.validToken;
-    return user;
-  } catch (e) {
-    console.log(e);
-    return e;
-  }
-}
+const page = process.env.page as string;
 
 export default async function Page({
   params: { lang },
 }: {
   params: { lang: string };
 }) {
-  const user = await getData();
+  const cookie = cookies().get("name")!.value;
+  const user = await getUser(page, cookie);
   return (
     <>
       <NavBar user={user}></NavBar>

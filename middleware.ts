@@ -3,10 +3,7 @@ import Negotiator from "negotiator";
 import { NextResponse, NextRequest } from "next/server";
 const env = process.env.NODE_ENV;
 
-const page =
-  env === "development"
-    ? "http://localhost:3000/"
-    : "https://next-app-neon-eta.vercel.app/";
+const page = process.env.page;
 const locales = [
   "en-US",
   "pl-PL",

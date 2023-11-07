@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import BaseInput from "../BaseInput/BaseInput";
-import { createUser } from "@/app/_firebase/getFirebase";
-import { useRouter } from "next/navigation"; 
+import { createUser } from "@/app/utils/firebase/getFirebase";
+import { useRouter } from "next/navigation";
 
 export default function SecondStep({ data, styles, showModal }: any) {
   const [password, setPassword] = useState("");
@@ -18,7 +18,6 @@ export default function SecondStep({ data, styles, showModal }: any) {
       console.log(status);
       showModal(status);
     }
-
   }
 
   return (

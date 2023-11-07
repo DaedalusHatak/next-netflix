@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./NavBar.module.scss";
-import { signOutUser } from "@/app/_firebase/getFirebase";
+import { signOutUser } from "@/app/utils/firebase/getFirebase";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
