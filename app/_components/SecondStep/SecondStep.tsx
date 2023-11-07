@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import BaseInput from "../BaseInput/BaseInput";
-import { createUser } from "@/app/utils/firebase/getFirebase";
+import { createUser } from "@/app/_utils/firebase/getFirebase";
 import { useRouter } from "next/navigation";
 
 export default function SecondStep({ data, styles, showModal }: any) {

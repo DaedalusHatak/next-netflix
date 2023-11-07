@@ -2,8 +2,8 @@ import NavBar from "@/app/_components/NavBar/NavBar";
 import AccountDetails from "./AccountDetails";
 
 import Client from "./Client";
-import { firebaseAdmin } from "@/app/utils/firebase/firebase-admin";
-import firebase_app from "@/app/utils/firebase/firebase-client";
+import { firebaseAdmin } from "@/app/_utils/firebase/firebase-admin";
+import firebase_app from "@/app/_utils/firebase/firebase-client";
 import styles from "./page.module.scss";
 import { cookies } from "next/headers";
 import getUser from "@/app/_utils/methods/getUser";

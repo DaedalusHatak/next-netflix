@@ -3,10 +3,10 @@ import BaseInput from "@/app/_components/BaseInput/BaseInput";
 import styles from "@/app/[lang]/login/login.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { SignInFirebase } from "@/app/utils/firebase/getFirebase";
+import { SignInFirebase } from "@/app/_utils/firebase/getFirebase";
 import BaseModal from "../BaseModal/BaseModal";
 import { getAuth, updateProfile } from "firebase/auth";
-import firebase_app from "@/app/utils/firebase/firebase-client";
+import firebase_app from "@/app/_utils/firebase/firebase-client";
 export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");

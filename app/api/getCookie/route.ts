@@ -1,4 +1,4 @@
-import { firebaseAdmin } from "@/app/utils/firebase/firebase-admin";
+import { firebaseAdmin } from "@/app/_utils/firebase/firebase-admin";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 const adminAuth = firebaseAdmin.auth();
