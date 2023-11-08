@@ -154,7 +154,7 @@
   border-radius: 5px;
   border: 1px solid #86868b;
   max-width: 700px;
-  width: 70vw;
+ 
   padding: 1rem 1.25rem 2rem 1.25rem;
   font-size: 1.15rem;
   margin: 0.6rem auto;
@@ -168,14 +168,19 @@
   width: 70vw;
 }
 .user {
-  display: flex;
+  display: grid;
+  text-wrap: balance;
+
+  grid-template-columns: max-content 1fr 1rem;
+ word-break: break-word;
   color: #f7bc51;
-  gap: 15px;
+  gap: 5px;
   margin-bottom: 10px;
   font-size: 1rem;
   font-weight: 700;
 }
 .time {
+  padding-left: 8px;
   color: rgb(170, 170, 170);
 }
 .show-more-button {
@@ -187,7 +192,7 @@
   position: absolute;
   padding: 0.3rem;
   height: max-content;
-  right: 0;
+  right: -10px;
   top: -10px;
   z-index: 1;
 }
@@ -227,4 +232,20 @@
 
   right: -20px;
   top: -18px;
+}
+@media screen and (max-width:600px) {
+  .button{
+    width: 100%;
+    padding: 0.75rem 0.5rem;
+  }
+  .user{
+    gap: 1px;
+    grid-template-columns: auto auto 1rem;
+  }
+  .section{
+    padding: 0 0.5rem ;
+  }
+  .posts{
+    padding: 1rem 0.7rem 2rem;
+  }
 }

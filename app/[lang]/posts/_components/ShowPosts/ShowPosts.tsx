@@ -140,9 +140,7 @@ export default function ShowPosts({ user, styles }: any) {
                       {" "}
                       {showTime(post.createdAt)}{" "}
                     </span>
-                  </div>
-                  {post.post}
-                  {post.user === user.email && (
+                    {post.user === user.email && (
                     <>
                       <button
                         // v-if="userProfile.email === post.user"
@@ -168,6 +166,9 @@ export default function ShowPosts({ user, styles }: any) {
                       )}
                     </>
                   )}
+                  </div>
+                  {post.post}
+    
                 </div>
               </motion.li>
             ))}
