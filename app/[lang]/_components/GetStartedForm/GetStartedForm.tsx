@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import BaseInput from "../BaseInput/BaseInput";
+import BaseInput from "../../../_components/BaseInput/BaseInput";
 import {useRouter} from "next/navigation"
 export default function GetStartedForm() {
   const router = useRouter();

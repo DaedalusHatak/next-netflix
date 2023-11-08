@@ -1,8 +1,8 @@
 import NavBar from "@/app/_components/NavBar/NavBar";
 import { cookies } from "next/headers";
-import AddPosts from "./AddPosts";
+import AddPosts from "./_components/AddPosts/AddPosts";
 import styles from "./page.module.scss";
-import ShowPosts from "./ShowPosts";
+import ShowPosts from "./_components/ShowPosts/ShowPosts";
 import getUser from "@/app/_utils/methods/getUser";
 
 const page = process.env.page as string;

@@ -1,7 +1,7 @@
 import { firebaseAdmin } from "@/app/_utils/firebase/firebase-admin";
 import { cookies } from "next/headers";
 import Client from "../client";
-import DataList from "@/app/_components/DataList/dataList";
+import DataList from "@/app/[lang]/browse/_components/DataList/dataList";
 import getUser from "@/app/_utils/methods/getUser";
 
 const page = process.env.page as string;

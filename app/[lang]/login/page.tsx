@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./login.module.scss";
-import LoginForm from "@/app/_components/LoginForm/loginForm";
+import LoginForm from "@/app/[lang]/login/_components/LoginForm/loginForm";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export default function AskedQuestions() {

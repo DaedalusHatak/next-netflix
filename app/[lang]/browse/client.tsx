@@ -1,6 +1,6 @@
 "use client";
 
-import MovieCard from "@/app/_components/MovieCard/movieCard";
+import MovieCard from "@/app/[lang]/browse/_components/MovieCard/movieCard";
 import NavBar from "@/app/_components/NavBar/NavBar";
 
 import { useSelector } from "react-redux";

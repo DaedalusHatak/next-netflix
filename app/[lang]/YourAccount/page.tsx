@@ -1,7 +1,7 @@
 import NavBar from "@/app/_components/NavBar/NavBar";
-import AccountDetails from "./AccountDetails";
+import AccountDetails from "./_components/AccountDetails/AccountDetails";
 
-import Client from "./Client";
+import Client from "./_components/Client/Client";
 import { firebaseAdmin } from "@/app/_utils/firebase/firebase-admin";
 import firebase_app from "@/app/_utils/firebase/firebase-client";
 import styles from "./page.module.scss";

@@ -39,7 +39,8 @@ export async function middleware(request: NextRequest) {
     if (!idToken) {
       if (
         request.nextUrl.pathname === "/browse" ||
-        request.nextUrl.pathname === "/YourAccount"
+        request.nextUrl.pathname === "/YourAccount" ||
+        request.nextUrl.pathname === "/posts"
       ) {
         return NextResponse.redirect(baseUrl);
       }
@@ -68,12 +69,12 @@ export async function middleware(request: NextRequest) {
     if (
       !json.validToken &&
       (request.nextUrl.pathname === "/browse" ||
-        request.nextUrl.pathname === "/YourAccount")
+        request.nextUrl.pathname === "/YourAccount" || request.nextUrl.pathname === "/posts")
     ) {
       return NextResponse.redirect(baseUrl);
     }
   } catch (e) {
-    console.log("midd", e);
+    console.log("middleware error", e);
   }
   return NextResponse.rewrite(newUrl);
 }

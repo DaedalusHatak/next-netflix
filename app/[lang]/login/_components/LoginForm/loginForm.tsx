@@ -4,7 +4,7 @@ import styles from "@/app/[lang]/login/login.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SignInFirebase } from "@/app/_utils/firebase/getFirebase";
-import BaseModal from "../BaseModal/BaseModal";
+import BaseModal from "../../../../_components/BaseModal/BaseModal";
 import { getAuth, updateProfile } from "firebase/auth";
 import firebase_app from "@/app/_utils/firebase/firebase-client";
 export default function LoginForm() {

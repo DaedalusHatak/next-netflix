@@ -1,8 +1,7 @@
-import BaseModal from "@/app/_components/BaseModal/BaseModal";
-import MembershipDetails from "./MembershipDetails";
-import PhoneDelete from "./PhoneDelete";
-import styles from "./page.module.scss";
-import SelectPicture from "@/app/_components/SelectPicture/SelectPicture";
+import MembershipDetails from "../MembershipDetails/MembershipDetails";
+import PhoneDelete from "../PhoneDelete/PhoneDelete";
+import styles from "@/app/[lang]/YourAccount/page.module.scss"
+import SelectPicture from "@/app/[lang]/YourAccount/_components/SelectPicture/SelectPicture";
 import fs from "fs";
 import path from "path";
 

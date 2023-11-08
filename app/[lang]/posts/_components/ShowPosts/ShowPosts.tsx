@@ -11,7 +11,7 @@ import {
   query,
 } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
-import IconInfo from "./IconInfo";
+import IconInfo from "../IconInfo/IconInfo";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function ShowPosts({ user, styles }: any) {

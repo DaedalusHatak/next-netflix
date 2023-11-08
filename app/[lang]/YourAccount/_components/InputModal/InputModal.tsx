@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import styles from "./page.module.scss"
+import styles from "@/app/[lang]/YourAccount/page.module.scss"
 export default function InputModal({
     hideModal,
   }: {

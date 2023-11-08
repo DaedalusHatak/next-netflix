@@ -1,10 +1,10 @@
-import HeroNetflix from "@/app/_components/HeroNetflix/HeroNetflix";
+import HeroNetflix from "@/app/[lang]/_components/HeroNetflix/HeroNetflix";
 import BaseCard from "@/app/_components/BaseCard/BaseCard";
-import EnjoyTv from "@/app/_components/EnjoyTv/EnjoyTv";
-import DownloadImg from "@/app/_components/DownloadImg/DownloadImg";
-import EverywhereImg from "@/app/_components/EverywhereImg/EverywhereImg";
-import KidsImg from "@/app/_components/KidsImg/KidsImg";
-import AskedQuestions from "@/app/_components/AskedQuestions/AskedQuestions";
+import EnjoyTv from "@/app/[lang]/_components/EnjoyTv/EnjoyTv";
+import DownloadImg from "@/app/[lang]/_components/DownloadImg/DownloadImg";
+import EverywhereImg from "@/app/[lang]/_components/EverywhereImg/EverywhereImg";
+import KidsImg from "@/app/[lang]/_components/KidsImg/KidsImg";
+import AskedQuestions from "@/app/[lang]/_components/AskedQuestions/AskedQuestions";
 
 function Components() {
   const sections = [
@@ -56,7 +56,7 @@ export default function Page({ params: { lang } }: {params: {lang: string}}) {
       </section>
       <Components></Components>
       <AskedQuestions></AskedQuestions>
-      <section></section>
+
     </div>
   );
 }

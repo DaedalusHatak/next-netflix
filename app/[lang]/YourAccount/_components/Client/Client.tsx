@@ -1,7 +1,7 @@
 "use client"
 
 import BaseModal from "@/app/_components/BaseModal/BaseModal";
-import InputModal from "./InputModal";
+import InputModal from "../InputModal/InputModal";
 import { useState } from "react";
 
 export default function AccountDetails() {

@@ -1,6 +1,6 @@
 "use client";
 import BaseInput from "@/app/_components/BaseInput/BaseInput";
-import styles from "./page.module.scss";
+import styles from "@/app/[lang]/YourAccount/page.module.scss"
 import { DecodedIdToken, UserRecord } from "firebase-admin/auth";
 import { useEffect, useState } from "react";
 import {
@@ -10,7 +10,7 @@ import {
   updatePhoneNumber,
 } from "firebase/auth";
 import firebase_app from "@/app/_utils/firebase/firebase-client";
-import InputModal from "./InputModal";
+import InputModal from "../InputModal/InputModal";
 import BaseModal from "@/app/_components/BaseModal/BaseModal";
 
 declare global {

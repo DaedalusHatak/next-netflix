@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import BaseInput from "../BaseInput/BaseInput";
+import BaseInput from "../../../../_components/BaseInput/BaseInput";
 import { createUser } from "@/app/_utils/firebase/getFirebase";
 import { useRouter } from "next/navigation";
 

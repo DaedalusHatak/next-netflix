@@ -1,7 +1,7 @@
 "use client";
 
 import BaseModal from "@/app/_components/BaseModal/BaseModal";
-import SecondStep from "@/app/_components/SecondStep/SecondStep";
+import SecondStep from "@/app/[lang]/confirm/_components/SecondStep/SecondStep";
 import { useState } from "react";
 import styles from "@/app/[lang]/confirm/page.module.scss";
 import { useRouter } from "next/navigation";
