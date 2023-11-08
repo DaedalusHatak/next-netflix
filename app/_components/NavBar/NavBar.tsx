@@ -3,11 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./NavBar.module.scss";
+<<<<<<< HEAD
 import { signOutUser } from "@/app/_firebase/getFirebase";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
 
+=======
+import { signOutUser } from "@/app/_utils/firebase/getFirebase";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
 export default function NavBar({ user }: any) {
   const [isHoveredMenu, setIsHoveredMenu] = useState(false);
   const [isHoveredProfile, setIsHoveredProfile] = useState(false);
@@ -73,7 +80,10 @@ export default function NavBar({ user }: any) {
     }, 200);
   }
   function PreviousArrowKey() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
     if (profileCounter > 0) {
       setProfileCounter(profileCounter - 1);
     }
@@ -97,7 +107,10 @@ export default function NavBar({ user }: any) {
     }
   }
   function handleKeys(event: any) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
     setWasButton(true);
 
     if (event.altKey && event.ctrlKey) {
@@ -146,14 +159,24 @@ export default function NavBar({ user }: any) {
 
     if (
       event.key === "ArrowDown" ||
+<<<<<<< HEAD
       (event.key === "Tab" && !event.shiftKey && (isHoveredMenu || isHoveredProfile))
+=======
+      (event.key === "Tab" &&
+        !event.shiftKey &&
+        (isHoveredMenu || isHoveredProfile))
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
     ) {
       if (
         (isHoveredProfile && profileCounter !== 2) ||
         (isHoveredMenu && profileCounter !== 3)
       ) {
         event.preventDefault();
+<<<<<<< HEAD
       } 
+=======
+      }
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
       NextArrowKey();
       return;
     }
@@ -166,6 +189,7 @@ export default function NavBar({ user }: any) {
     }
   }
 
+<<<<<<< HEAD
   function resetKeys(){
     console.log(profileCounter)
     if((isHoveredMenu || (profileCounter === 3 && isHoveredProfile)) || profileCounter === 0){
@@ -175,6 +199,19 @@ export default function NavBar({ user }: any) {
       setProfileCounter(0)
     }
 
+=======
+  function resetKeys() {
+    console.log(profileCounter);
+    if (
+      isHoveredMenu ||
+      (profileCounter === 3 && isHoveredProfile) ||
+      profileCounter === 0
+    ) {
+      setIsHoveredMenu(false);
+      setIsHoveredProfile(false);
+      setProfileCounter(0);
+    }
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
   }
 
   const account = useRef<HTMLAnchorElement | null>(null);
@@ -227,7 +264,11 @@ export default function NavBar({ user }: any) {
           onMouseOver={() => handleHoverMenu()}
           onMouseLeave={() => handleUnhoverMenu()}
           onKeyDown={handleKeys}
+<<<<<<< HEAD
           onFocus={()=> resetKeys()}
+=======
+          onFocus={() => resetKeys()}
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
           className={styles.button}
         >
           Browse <span>▼</span>
@@ -284,7 +325,11 @@ export default function NavBar({ user }: any) {
           onMouseOver={() => handleHoverProfile()}
           onMouseLeave={() => handleUnhoverProfile()}
           onKeyDown={handleKeys}
+<<<<<<< HEAD
           onFocus={()=> resetKeys()}
+=======
+          onFocus={() => resetKeys()}
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
           className={styles.profile}
           aria-haspopup="true"
           aria-controls="menu"
@@ -296,6 +341,7 @@ export default function NavBar({ user }: any) {
             alt="Profile Photo"
           />
         </div>
+<<<<<<< HEAD
       </div>
       {isHoveredProfile && (
         <div
@@ -338,6 +384,51 @@ export default function NavBar({ user }: any) {
           </ul>
         </div>
       )}
+=======
+
+        {isHoveredProfile && (
+          <div
+            onMouseOver={() => handleHoverProfile()}
+            onMouseLeave={() => handleUnhoverProfile()}
+            className={styles["mobile-list"]}
+          >
+            <ul
+              ref={dropdown}
+              className={`${styles.account} ${styles.ul}`}
+            >
+              <Link
+                onKeyDown={handleKeys}
+                className={styles.a}
+                ref={account}
+                href="/YourAccount"
+                scroll={false}
+              >
+                Account
+              </Link>
+              <Link
+                onKeyDown={handleKeys}
+                className={styles.a}
+                href="/posts"
+                scroll={false}
+              >
+                Posts
+              </Link>
+              <Link
+                id="lastProfile"
+                onKeyDown={handleKeys}
+                onBlur={() => resetKeys()}
+                className={styles.a}
+                href="/"
+                scroll={false}
+                onClick={() => signOut()}
+              >
+                Logout
+              </Link>
+            </ul>
+          </div>
+        )}
+      </div>
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
     </nav>
   );
 }

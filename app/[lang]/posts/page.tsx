@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import AddPosts from "./AddPosts";
 import styles from "./page.module.scss";
 import ShowPosts from "./ShowPosts";
+<<<<<<< HEAD
 async function getData() {
   let user;
   try {
@@ -20,13 +21,23 @@ async function getData() {
     return e;
   }
 }
+=======
+import getUser from "@/app/_utils/methods/getUser";
+
+const page = process.env.page as string;
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
 
 export default async function Page({
   params: { lang },
 }: {
   params: { lang: string };
 }) {
+<<<<<<< HEAD
   const user = await getData();
+=======
+  const cookie = cookies().get("name")!.value;
+  const user = await getUser(page, cookie);
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
   return (
     <>
       <NavBar user={user}></NavBar>

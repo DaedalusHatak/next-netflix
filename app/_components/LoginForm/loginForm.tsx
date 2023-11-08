@@ -3,10 +3,17 @@ import BaseInput from "@/app/_components/BaseInput/BaseInput";
 import styles from "@/app/[lang]/login/login.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+<<<<<<< HEAD
 import { SignInFirebase } from "@/app/_firebase/getFirebase";
 import BaseModal from "../BaseModal/BaseModal";
 import { getAuth, updateProfile } from "firebase/auth";
 import firebase_app from "@/app/_firebase/firebase-client";
+=======
+import { SignInFirebase } from "@/app/_utils/firebase/getFirebase";
+import BaseModal from "../BaseModal/BaseModal";
+import { getAuth, updateProfile } from "firebase/auth";
+import firebase_app from "@/app/_utils/firebase/firebase-client";
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
 export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -17,10 +24,17 @@ export default function LoginForm() {
   async function Sign(emailInput: string, passwordInput: string) {
     setLoader(true);
     const creds = await SignInFirebase(emailInput, passwordInput);
+<<<<<<< HEAD
     console.log(creds)
    if(!creds.photoURL){
     await updateProfile(creds,{photoURL:'Raiden.webp'})
    }
+=======
+    console.log(creds);
+    if (!creds.photoURL) {
+      await updateProfile(creds, { photoURL: "Raiden.webp" });
+    }
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
     if (!creds.accessToken) {
       setIsModal(creds);
       setLoader(false);

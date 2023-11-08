@@ -1,3 +1,5 @@
+const port = process.env.PORT || 3000;
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -9,6 +11,13 @@ const nextConfig = {
     remotePatterns: [{ protocol: "https", hostname: "image.tmdb.org" }],
   },
   env: {
+<<<<<<< HEAD
+=======
+    page:
+      process.env.NODE_ENV === "development"
+        ? `http://localhost:${port}`
+        : process.env.PAGE,
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
     firebaseAdmin: {
       projectId: process.env.FIREBASE_SA_PROJECT_ID,
 

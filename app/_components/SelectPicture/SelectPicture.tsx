@@ -3,7 +3,11 @@ import Image from "next/image";
 import styles from "./SelectPicture.module.scss";
 import { useState } from "react";
 import { getAuth, updateProfile } from "firebase/auth";
+<<<<<<< HEAD
 import firebase_app from "@/app/_firebase/firebase-client";
+=======
+import firebase_app from "@/app/_utils/firebase/firebase-client";
+>>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
 import { useDispatch, useSelector } from "react-redux";
 import { setAvatar } from "@/app/_store/avatar";
 export default function SelectPicture({ avatars, profile }: any) {
