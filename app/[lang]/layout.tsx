@@ -2,6 +2,7 @@ import { ReduxProvider } from "@/app/_store/provider";
 import "./globals.scss";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import NextTopLoader from 'nextjs-toploader';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html className="html" lang={params.lang ?? "en-US"}>
       <body className={`${inter.className} body`}>
-      
+      <NextTopLoader showSpinner={false} height={7}  color="#2299DD" />
        <main> <ReduxProvider>{children}</ReduxProvider></main>
       </body>
     </html>
