@@ -9,11 +9,7 @@ import {
   getAuth,
   updatePhoneNumber,
 } from "firebase/auth";
-<<<<<<< HEAD
-import firebase_app from "@/app/_firebase/firebase-client";
-=======
 import firebase_app from "@/app/_utils/firebase/firebase-client";
->>>>>>> 1a024c1ba7fcbe105135169436445291a2091ffb
 import InputModal from "./InputModal";
 import BaseModal from "@/app/_components/BaseModal/BaseModal";
 
