@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import { useState } from "react";
 import BaseInput from "../../../_components/BaseInput/BaseInput";
-import {useRouter} from "next/navigation"
+import { useRouter } from "next/navigation";
 export default function GetStartedForm() {
   const router = useRouter();
   const [inputValue, setInputValue] = useState<string>("");
@@ -16,12 +16,14 @@ export default function GetStartedForm() {
       return;
     }
     setError("");
-    router.push("/confirm")
   }
   async function handleSubmit(e: any) {
     e.preventDefault();
-    await fetch("/api/setEmail",{method:"POST",body:JSON.stringify(inputValue)});
-  
+    await fetch("/api/setEmail", {
+      method: "POST",
+      body: JSON.stringify(inputValue),
+    });
+    router.push("/confirm");
   }
   return (
     <>
