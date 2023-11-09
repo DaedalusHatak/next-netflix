@@ -24,11 +24,13 @@ export default async function Page({
   params: { lang: string; id: string };
   searchParams: any;
 }) {
-  const cookie = cookies().get("name")!.value;
-  const user = await getUser(page, cookie);
+  console.log(id)
+  const cookie = cookies().get("name");
+  const user = cookie ? await getUser(cookie.value) : null;
   const queries = setQueries(id);
   return (
     <>
+   
       <Client user={user} />
       <main className="flex gap-28 flex-col items-center justify-between p-[0.5rem 0] md:p-[3rem 0] pt-32 mb-24">
         {queries.map((q, index) => (

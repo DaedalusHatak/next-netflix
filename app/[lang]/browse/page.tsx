@@ -7,8 +7,8 @@ import getUser from "@/app/_utils/methods/getUser";
 const page = process.env.page as string;
 
 export default async function Page({ params: { lang } }: any) {
-  const cookie = cookies().get("name")!.value;
-  const user = await getUser(page, cookie);
+  const cookie = cookies().get("name");
+  const user = cookie ? await getUser(cookie.value) : null;
   const queries = [
     "3/movie/popular",
     "3/movie/top_rated",

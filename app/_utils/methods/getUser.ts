@@ -1,16 +1,15 @@
-export default async function getUser(page: string, cookie: string) {
-  let user;
+import { firebaseAdmin } from "../firebase/firebase-admin";
+export default async function getUser(cookie: string) {
   try {
-    const res = await fetch(`${page}/api/getCookie`, {
-      cache: "no-store",
-      method: "POST",
-      body: JSON.stringify(cookie),
-    });
-    const json = await res.json();
-    user = await json.validToken;
-    return user;
-  } catch (e) {
-    console.log(e);
+    const validToken = await firebaseAdmin
+    .auth()
+    .verifySessionCookie(cookie, true);
+  const user = await firebaseAdmin.auth().getUser(validToken.uid);
+
+ return user.toJSON();
+    
+  } catch (e:any) {
+    console.log("this is my ass",e);
     return e;
   }
 }

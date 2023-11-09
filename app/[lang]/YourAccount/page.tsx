@@ -13,10 +13,11 @@ export const revalidate = 0;
 const page = process.env.page as string;
 
 export default async function Page() {
-  const cookie = cookies().get("name")!.value;
-  const user = await getUser(page, cookie);
+  const cookie = cookies().get("name");
 
-  console.log("page", user.email);
+  const user = cookie ? await getUser(cookie.value) : null;
+
+
   // const sessionVerifier = await firebaseAdmin
   //   .auth()
   //   .verifySessionCookie(cookie, true);

@@ -21,7 +21,7 @@ async function SignInFirebase(email: string, password: string) {
 
 async function signOutUser(uid: string) {
   await auth.signOut();
-  const data = await fetch("http://localhost:3000/api/setCookie", {
+  const data = await fetch("/api/setCookie", {
     cache: "no-store",
     method: "POST",
     body: JSON.stringify(""),
