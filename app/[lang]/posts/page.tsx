@@ -13,7 +13,7 @@ export default async function Page({
   params: { lang: string };
 }) {
   const cookie = cookies().get("name")!.value;
-  const user = await getUser(page, cookie);
+  const user = await getUser(cookie);
   return (
     <>
       <NavBar user={user}></NavBar>

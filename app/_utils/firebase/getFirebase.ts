@@ -28,7 +28,6 @@ async function signOutUser(uid: string) {
   });
 
   const res = await data.json();
-  console.log(res);
   return res;
 }
 async function createUser(email: string, password: string) {

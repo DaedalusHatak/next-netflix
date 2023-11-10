@@ -38,7 +38,6 @@ export default function ShowPosts({ user, styles }: any) {
           // setFirestoreDatabase((old) => [data, ...old]);
           return;
         } else if (snapshot.type === "added") {
-          console.log(initial);
           data.id = snapshot.doc.id;
           setFirestoreDatabase((old) => [data, ...old]);
         }
@@ -82,7 +81,6 @@ export default function ShowPosts({ user, styles }: any) {
   }
 
   async function deleteDocuments(element: any, index: number) {
-    console.log(element);
     const firestore = getFirestore();
     try {
       if (user.email === element.user) {

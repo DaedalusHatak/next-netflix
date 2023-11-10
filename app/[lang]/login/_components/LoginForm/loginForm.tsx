@@ -17,7 +17,6 @@ export default function LoginForm() {
   async function Sign(emailInput: string, passwordInput: string) {
     setLoader(true);
     const creds = await SignInFirebase(emailInput, passwordInput);
-    console.log(creds);
     if (!creds.photoURL) {
       await updateProfile(creds, { photoURL: "Raiden.webp" });
     }
