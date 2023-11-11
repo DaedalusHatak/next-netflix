@@ -1,8 +1,8 @@
-import { firebaseAdmin } from "@/app/_utils/firebase/firebase-admin";
 import { cookies } from "next/headers";
 import Client from "../client";
 import DataList from "@/app/[lang]/browse/_components/DataList/dataList";
 import getUser from "@/app/_utils/methods/getUser";
+import { User } from "@/types";
 
 const page = process.env.page as string;
 
@@ -22,15 +22,14 @@ export default async function Page({
   searchParams,
 }: {
   params: { lang: string; id: string };
-  searchParams: any;
+  searchParams: string;
 }) {
-  console.log(id)
+  console.log(id);
   const cookie = cookies().get("name");
-  const user = cookie ? await getUser(cookie.value) : null;
+  const user: User = cookie ? await getUser(cookie.value) : null;
   const queries = setQueries(id);
   return (
     <>
-   
       <Client user={user} />
       <main className="flex gap-28 flex-col items-center justify-between p-[0.5rem 0] md:p-[3rem 0] pt-32 mb-24">
         {queries.map((q, index) => (

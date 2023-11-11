@@ -1,5 +1,4 @@
 import * as firebaseAdmin from "firebase-admin";
-import { app } from "firebase-admin";
 
 const firebaseConfig = {
   projectId: process.env.NEXT_FIREBASE_SA_PROJECT_ID,
@@ -9,9 +8,10 @@ const firebaseConfig = {
   clientEmail: process.env.NEXT_FIREBASE_SA_CLIENT_EMAIL,
 };
 
-
 if (!firebaseAdmin.apps.length) {
-  firebaseAdmin.initializeApp({ credential: firebaseAdmin.credential.cert(firebaseConfig) });
-} 
+  firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert(firebaseConfig),
+  });
+}
 
-export {firebaseAdmin};
+export { firebaseAdmin };

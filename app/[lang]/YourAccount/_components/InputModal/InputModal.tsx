@@ -1,32 +1,23 @@
-"use client"
+"use client";
 import { useState } from "react";
-import styles from "@/app/[lang]/YourAccount/page.module.scss"
-export default function InputModal({
-    hideModal,
-  }: {
-
-
-    hideModal?: any;
-  }) {
-    const [newNumber,setNewNumber] = useState("")
-    return (
-  
-  <>
-  
-  <div
-        className={styles["modal-backdrop"]}
-      >
+import styles from "@/app/[lang]/YourAccount/page.module.scss";
+export default function InputModal({ hideModal }: { hideModal?: any }) {
+  const [newNumber, setNewNumber] = useState<string>("");
+  return (
+    <>
+      <div className={styles["modal-backdrop"]}>
         <div className={styles["modal"]}>
           <form
             // @submit.prevent="verifyNewNumber(phone.newNumber)"
             action=""
             className={styles["form"]}
           >
-            <header className={styles["modal-header"]}>Change Phone Number</header>
-    
+            <header className={styles["modal-header"]}>
+              Change Phone Number
+            </header>
+
             <div className={styles["modal-body"]}>
               Enter new phone number
-    
               <input
                 type="text"
                 className={styles["verification"]}
@@ -34,7 +25,7 @@ export default function InputModal({
                 onChange={(e) => setNewNumber(e.target.value)}
               />
             </div>
-    
+
             <footer className={styles["modal-footer"]}>
               <button
                 onClick={() => hideModal(newNumber)}
@@ -54,7 +45,6 @@ export default function InputModal({
           </form>
         </div>
       </div>
-  </>
-    );
-  }
-  
+    </>
+  );
+}

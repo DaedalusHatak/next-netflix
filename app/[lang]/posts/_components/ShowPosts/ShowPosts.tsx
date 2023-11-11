@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  DocumentData,
   Timestamp,
   collection,
   deleteDoc,
@@ -16,9 +17,14 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export default function ShowPosts({ user, styles }: any) {
   const firestore = getFirestore();
-  const [initial, setInitial] = useState<any>({ opacity: 1, x: 0 });
-  const [firestoreDatabase, setFirestoreDatabase] = useState<any[]>([]);
-  const [showMoreInfo, setShowMoreInfo] = useState<any>(null);
+  const [initial, setInitial] = useState<{ opacity: number; x: number }>({
+    opacity: 1,
+    x: 0,
+  });
+  const [firestoreDatabase, setFirestoreDatabase] = useState<DocumentData[]>(
+    []
+  );
+  const [showMoreInfo, setShowMoreInfo] = useState<DocumentData | null>(null);
 
   const menu = useRef<HTMLDivElement | null>(null);
 
@@ -35,7 +41,6 @@ export default function ShowPosts({ user, styles }: any) {
         let data = snapshot.doc.data();
 
         if (snapshot.type === "modified") {
-          // setFirestoreDatabase((old) => [data, ...old]);
           return;
         } else if (snapshot.type === "added") {
           data.id = snapshot.doc.id;
@@ -80,7 +85,7 @@ export default function ShowPosts({ user, styles }: any) {
     }
   }
 
-  async function deleteDocuments(element: any, index: number) {
+  async function deleteDocuments(element: DocumentData, index: number) {
     const firestore = getFirestore();
     try {
       if (user.email === element.user) {
@@ -139,34 +144,33 @@ export default function ShowPosts({ user, styles }: any) {
                       {showTime(post.createdAt)}{" "}
                     </span>
                     {post.user === user.email && (
-                    <>
-                      <button
-                        // v-if="userProfile.email === post.user"
-                        // @click="showMoreInfo = post"
-                        onClick={() => setShowMoreInfo(post)}
-                        className={`${styles["show-more-button"]}`}
-                      >
-                        <IconInfo />
-                      </button>
-                      {showMoreInfo === post && (
-                        <div
-                          // v-if="showMoreInfo === post"
-                          ref={menu}
-                          className={styles["delete-menu"]}
+                      <>
+                        <button
+                          // v-if="userProfile.email === post.user"
+                          // @click="showMoreInfo = post"
+                          onClick={() => setShowMoreInfo(post)}
+                          className={`${styles["show-more-button"]}`}
                         >
-                          <button
-                            onClick={() => deleteDocuments(post, index)}
-                            className={`${styles["delete-button"]}  ${styles["button"]}`}
+                          <IconInfo />
+                        </button>
+                        {showMoreInfo === post && (
+                          <div
+                            // v-if="showMoreInfo === post"
+                            ref={menu}
+                            className={styles["delete-menu"]}
                           >
-                            Delete
-                          </button>
-                        </div>
-                      )}
-                    </>
-                  )}
+                            <button
+                              onClick={() => deleteDocuments(post, index)}
+                              className={`${styles["delete-button"]}  ${styles["button"]}`}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        )}
+                      </>
+                    )}
                   </div>
                   {post.post}
-    
                 </div>
               </motion.li>
             ))}

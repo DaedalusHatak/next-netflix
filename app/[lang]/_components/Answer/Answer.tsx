@@ -1,6 +1,15 @@
+import { Question } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function Answer({ question, styles, note }: any) {
+export default function Answer({
+  question,
+  styles,
+  note,
+}: {
+  question: Question;
+  styles: any;
+  note: string;
+}) {
   return (
     <AnimatePresence>
       {question.isActive && (

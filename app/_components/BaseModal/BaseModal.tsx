@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./modal.module.scss";
-type Title = "Error" | "Success" | "Verification";
+import { Title } from "@/types";
+
 export default function BaseModal({
   message,
   title,
@@ -10,7 +11,7 @@ export default function BaseModal({
   title: Title;
   hideModal?: any;
 }) {
-  const [verCode, setVerCode] = useState("");
+  const [verCode, setVerCode] = useState<string>("");
 
   return (
     <>

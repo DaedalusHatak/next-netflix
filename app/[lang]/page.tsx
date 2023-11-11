@@ -5,9 +5,10 @@ import DownloadImg from "@/app/[lang]/_components/DownloadImg/DownloadImg";
 import EverywhereImg from "@/app/[lang]/_components/EverywhereImg/EverywhereImg";
 import KidsImg from "@/app/[lang]/_components/KidsImg/KidsImg";
 import AskedQuestions from "@/app/[lang]/_components/AskedQuestions/AskedQuestions";
+import { Section } from "@/types";
 
 function Components() {
-  const sections = [
+  const sections: Section[] = [
     {
       header: "Enjoy on your TV",
       desc: "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
@@ -39,8 +40,6 @@ function Components() {
             desc={section.desc}
             header={section.header}
             comp={section.comp}
-            reverse={section.reverse}
-            className="content-section"
           ></BaseCard>
         </section>
       ))}
@@ -48,7 +47,11 @@ function Components() {
   );
 }
 
-export default function Page({ params: { lang } }: {params: {lang: string}}) {
+export default function Page({
+  params: { lang },
+}: {
+  params: { lang: string };
+}) {
   return (
     <div>
       <section className="hero-image">
@@ -56,7 +59,6 @@ export default function Page({ params: { lang } }: {params: {lang: string}}) {
       </section>
       <Components></Components>
       <AskedQuestions></AskedQuestions>
-
     </div>
   );
 }

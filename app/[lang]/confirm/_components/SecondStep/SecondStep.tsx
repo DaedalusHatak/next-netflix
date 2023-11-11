@@ -1,12 +1,20 @@
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import BaseInput from "../../../../_components/BaseInput/BaseInput";
 import { createUser } from "@/app/_utils/firebase/getFirebase";
 import { useRouter } from "next/navigation";
 
-export default function SecondStep({ data, styles, showModal }: any) {
+export default function SecondStep({
+  data,
+  styles,
+  showModal,
+}: {
+  data: string | boolean;
+  styles: any;
+  showModal: any;
+}) {
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState(data || "");
-  const [error, setError]: any = useState("");
+  const [email, setEmail] = useState(typeof data === "string" ? data : "");
+  const [error, setError] = useState<string>("");
   const router = useRouter();
   async function createUserForm(e: FormEvent) {
     e.preventDefault();
@@ -41,7 +49,9 @@ export default function SecondStep({ data, styles, showModal }: any) {
         value={email}
         error={error}
         complete={email}
-        onChange={(e: any) => setEmail(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setEmail(e.target.value)
+        }
         required
       />
 
@@ -53,7 +63,9 @@ export default function SecondStep({ data, styles, showModal }: any) {
         complete="new-password"
         value={password}
         error={error}
-        onChange={(e: any) => setPassword(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setPassword(e.target.value)
+        }
         required
       />
       <button className={styles["button"]}>

@@ -1,19 +1,19 @@
-"use client"
+"use client";
 import { useState } from "react";
 import styles from "./AskedQuestions.module.scss";
 import GetStartedForm from "../GetStartedForm/GetStartedForm";
 import Answer from "../Answer/Answer";
 import { useQuestions } from "./useQuestions";
+import { Question } from "@/types";
 
 export default function AskedQuestions() {
   const note = "Note that this is only demonstration website!";
   const [questions, setQuestion] = useState(useQuestions);
 
-  function handleActive(question: any, hide?: any) {
+  function handleActive(question: number) {
     const updateQuestions = [...questions];
     updateQuestions[question].isActive = !updateQuestions[question].isActive;
     setQuestion(updateQuestions);
-    console.log(questions[question]);
   }
   return (
     <>
@@ -21,7 +21,7 @@ export default function AskedQuestions() {
         <h2 className={styles.h2}>Frequently Asked Questions</h2>
 
         <ul>
-          {questions.map((question, index) => (
+          {questions.map((question: Question, index: number) => (
             <li key={index}>
               <h3 className={styles.h3}>
                 <button

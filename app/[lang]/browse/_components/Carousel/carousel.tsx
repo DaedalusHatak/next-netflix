@@ -4,6 +4,7 @@ import styles from "./carousel.module.scss";
 import Image from "next/image";
 import { setSlide, setPosition } from "@/app/_store/feature";
 import { useDispatch } from "react-redux";
+import { Movie, Position, ResponseData, TVSerie } from "@/types";
 export default function Carousel({
   data,
   size,
@@ -11,7 +12,7 @@ export default function Carousel({
   padding,
   buttonWidth,
   buttonPadding,
-  buttonVisible,
+  buttonVisibile,
   emitImage,
   emitImageDelay,
   sm,
@@ -19,18 +20,34 @@ export default function Carousel({
   lg,
   xl,
   xxl,
-  position,
-  slide,
-}: any) {
+}: {
+  data: (TVSerie | Movie)[];
+  size: number;
+  overflow?: number;
+  padding?: number;
+  buttonWidth?: number;
+  buttonPadding?: number;
+  buttonVisibile?: boolean;
+  emitImage?: boolean;
+  emitImageDelay?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
+  xxl?: number;
+}) {
   const dispatch = useDispatch();
 
-  const [win, setWin] = useState(true);
+  const [win, setWin] = useState<boolean>(true);
   let hoverTimer: NodeJS.Timeout;
   //Defines if hover occurs
   const [hoverButtons, setHoverButtons] = useState<boolean>();
 
   //Defines start and end point for TouchEvent
-  const [touchMovement, setTouchMovement] = useState({ start: 0, end: 0 });
+  const [touchMovement, setTouchMovement] = useState<{
+    start: number;
+    end: number;
+  }>({ start: 0, end: 0 });
   //Defines if screen is smaller than 640px
   const [isMobile, setIsMobile] = useState<boolean>();
   //Defines which direction Carousel will move (1) -> Right or (-1) -> Left
@@ -42,9 +59,9 @@ export default function Carousel({
   //Defines how many elements should be shown
   const [screenVariable, setScreenVariable] = useState<number>();
   //Returns right flex-basis (how much elements at DOM)
-  const flexBasis = screenVariable ? 100 / screenVariable : null;
+  const flexBasis: number | null = screenVariable ? 100 / screenVariable : null;
   //copy of array
-  const [slides, setSlides] = useState(data);
+  const [slides, setSlides] = useState<(TVSerie | Movie)[]>(data);
   //Adds proper styling based on buttons that were clicked and if its 1st click or not
   const transform = () => {
     if (wasTriggered === 0) {
@@ -56,7 +73,7 @@ export default function Carousel({
     } else if (carouselMove === -1) return "translate3d(0%,0px,0px)";
     else return "translate3d(-100%,0px,0px)";
   };
-  const pad = padding + "rem";
+  const pad: string = padding + "rem";
 
   useEffect(() => {
     const touchDevice: any =
@@ -98,7 +115,7 @@ export default function Carousel({
     } else return false;
   }
   //Emits currently hovered element
-  function currElement(e: MouseEvent, slideElement: any) {
+  function currElement(e: MouseEvent, slideElement: Movie | TVSerie) {
     let timer;
     if (emitImageDelay) {
       timer = emitImageDelay;
@@ -112,7 +129,7 @@ export default function Carousel({
         hoverTimer = setTimeout(() => {
           if (e.target) {
             const obj = target.getBoundingClientRect().toJSON();
-            const pos = {
+            const pos: Position = {
               x: obj.x,
               y: obj.y,
               width: obj.width,
@@ -185,10 +202,11 @@ export default function Carousel({
       setTimeout(() => {
         const slide = [...slides];
         for (let i = 0; i < screenVariable!; i++) {
-          if (slides) {
+          if (slides && slides.length > 0) {
             const pop = slide.pop();
-
-            slide.unshift(pop);
+            if (pop) {
+              slide.unshift(pop);
+            }
           }
         }
         setSlides(slide);
@@ -230,7 +248,7 @@ export default function Carousel({
             onMouseOver={() => setHoverButtons(true)}
             onMouseLeave={() => setHoverButtons(false)}
             className={`${styles.handle} ${styles["left-handle"]} ${
-              hoverButtons || buttonVisible ? "" : styles["button-visible"]
+              hoverButtons || buttonVisibile ? "" : styles["button-visible"]
             }`}
             aria-label="Show previous movies"
           >
@@ -291,7 +309,7 @@ export default function Carousel({
             onMouseLeave={() => setHoverButtons(false)}
             onClick={() => forward()}
             className={`${styles["handle"]} ${styles["right-handle"]} ${
-              hoverButtons || buttonVisible ? "" : "button-visible"
+              hoverButtons || buttonVisibile ? "" : "button-visible"
             }`}
             aria-label="Show more movies"
           >

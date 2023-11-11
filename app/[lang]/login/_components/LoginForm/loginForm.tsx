@@ -1,17 +1,17 @@
 "use client";
 import BaseInput from "@/app/_components/BaseInput/BaseInput";
 import styles from "@/app/[lang]/login/login.module.scss";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SignInFirebase } from "@/app/_utils/firebase/getFirebase";
 import BaseModal from "../../../../_components/BaseModal/BaseModal";
-import { getAuth, updateProfile } from "firebase/auth";
-import firebase_app from "@/app/_utils/firebase/firebase-client";
+import { updateProfile } from "firebase/auth";
+
 export default function LoginForm() {
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [error, setError]: any = useState("");
-  const [loader, setLoader] = useState(false);
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [loader, setLoader] = useState<boolean>(false);
   const [isModal, setIsModal] = useState<string | false>(false);
   const router = useRouter();
   async function Sign(emailInput: string, passwordInput: string) {
@@ -25,7 +25,7 @@ export default function LoginForm() {
       setLoader(false);
       return;
     }
-    const id = await creds.getIdToken(true);
+    const id: string = await creds.getIdToken(true);
     const setCookie = await fetch("/api/setCookie", {
       next: { revalidate: 0 },
       method: "POST",
@@ -48,7 +48,7 @@ export default function LoginForm() {
         ></BaseModal>
       )}
       <form
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={(e: FormEvent) => e.preventDefault()}
         className={styles["form"]}
         name="login"
       >
@@ -60,7 +60,9 @@ export default function LoginForm() {
           complete="email"
           value={email}
           error={error}
-          onChange={(e: any) => setEmail(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
           required
         />
         <BaseInput
@@ -71,7 +73,9 @@ export default function LoginForm() {
           complete="current-password"
           value={password}
           error={error}
-          onChange={(e: any) => setPassword(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value)
+          }
           required
         />
         <button

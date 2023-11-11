@@ -6,11 +6,20 @@ import { getAuth, updateProfile } from "firebase/auth";
 import firebase_app from "@/app/_utils/firebase/firebase-client";
 import { useDispatch, useSelector } from "react-redux";
 import { setAvatar } from "@/app/_store/avatar";
-export default function SelectPicture({ avatars, profile }: any) {
+export default function SelectPicture({
+  avatars,
+  profile,
+}: {
+  avatars: string[];
+  profile: string;
+}) {
   const [selectedImage, setSelectedImage] = useState(profile);
   const dispatch = useDispatch();
-  const avatar = useSelector((state: any) => state.avatar.value.photoURL);
-  function selectWithSpace(e: any, selectedPicture: string) {
+  const avatar = useSelector(
+    (state: { avatar: { value: { photoURL: string } } }) =>
+      state.avatar.value.photoURL
+  );
+  function selectWithSpace(e: React.KeyboardEvent, selectedPicture: string) {
     if (e.key === " " || e.key === "Enter") {
       e.preventDefault();
       setSelectedImage(selectedPicture);
@@ -25,7 +34,7 @@ export default function SelectPicture({ avatars, profile }: any) {
   return (
     <>
       <div className={styles["change-pictures"]}>
-        {avatars.map((picture: any, index: any) => (
+        {avatars.map((picture: string, index: number) => (
           <Image
             key={index}
             //   :className="firestoreClient.avatar === picture ? 'selected' : ''"

@@ -1,11 +1,12 @@
 import MembershipDetails from "../MembershipDetails/MembershipDetails";
 import PhoneDelete from "../PhoneDelete/PhoneDelete";
-import styles from "@/app/[lang]/YourAccount/page.module.scss"
+import styles from "@/app/[lang]/YourAccount/page.module.scss";
 import SelectPicture from "@/app/[lang]/YourAccount/_components/SelectPicture/SelectPicture";
 import fs from "fs";
 import path from "path";
+import { User } from "@/types";
 
-export default function AccountDetails({ user }: { user: any }) {
+export default function AccountDetails({ user }: { user: User }) {
   const imageDir = path.join(process.cwd(), "public/assets/profile");
 
   const AllImages = fs.readdirSync(imageDir);
@@ -21,7 +22,7 @@ export default function AccountDetails({ user }: { user: any }) {
       <h2 className={styles["header-2"]}>Change profile picture</h2>
       <SelectPicture
         avatars={avatars}
-        profile={user.photoURL}
+        profile={user!.photoURL}
       />
     </>
   );

@@ -1,41 +1,39 @@
 "use client";
-import {
-  FormEvent,
-  FormEventHandler,
-  TextareaHTMLAttributes,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { createUser } from "@/app/_utils/firebase/getFirebase";
-import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import {
   addDoc,
   collection,
   getFirestore,
   serverTimestamp,
 } from "firebase/firestore";
+import { User } from "@/types";
 
-export default function AddPosts({ user, styles }: any) {
-  const [post, setPost] = useState("");
-  const [active, setActive] = useState(false);
+export default function AddPosts({
+  user,
+  styles,
+}: {
+  user: User;
+  styles: any;
+}) {
+  const [post, setPost] = useState<string>("");
+  const [active, setActive] = useState<boolean>(false);
   const textarea = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {}, [post]);
 
-  function autoResize(event: any) {
+  function autoResize(event: FormEvent) {
     textarea.current!.style.height = "auto";
     textarea.current!.style.height = textarea.current!.scrollHeight + "px";
-    setPost(event.target.value);
+    setPost((event.target as HTMLTextAreaElement).value);
   }
 
-  async function addData(e: any, bruh: string) {
+  async function addData(e: React.MouseEvent, postValue: string) {
     e.preventDefault();
     const firestore = getFirestore();
     const timestamp = serverTimestamp();
     const newData = {
-      post: bruh,
-      user: user.email,
+      post: postValue,
+      user: user!.email,
       createdAt: timestamp,
     };
     addDoc(collection(firestore, "avatar"), newData);
@@ -71,7 +69,7 @@ export default function AddPosts({ user, styles }: any) {
           </label>
         </div>
         <button
-          onClick={(e) => addData(e, post)}
+          onClick={(e: React.MouseEvent) => addData(e, post)}
           className={styles["button"]}
         >
           Add a new post

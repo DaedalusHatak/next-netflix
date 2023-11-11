@@ -2,8 +2,6 @@ import NavBar from "@/app/_components/NavBar/NavBar";
 import AccountDetails from "./_components/AccountDetails/AccountDetails";
 
 import Client from "./_components/Client/Client";
-import { firebaseAdmin } from "@/app/_utils/firebase/firebase-admin";
-import firebase_app from "@/app/_utils/firebase/firebase-client";
 import styles from "./page.module.scss";
 import { cookies } from "next/headers";
 import getUser from "@/app/_utils/methods/getUser";
@@ -16,7 +14,6 @@ export default async function Page() {
   const cookie = cookies().get("name");
 
   const user = cookie ? await getUser(cookie.value) : null;
-
 
   // const sessionVerifier = await firebaseAdmin
   //   .auth()

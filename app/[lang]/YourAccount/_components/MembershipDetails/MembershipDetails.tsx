@@ -1,8 +1,7 @@
 "use client";
 import BaseInput from "@/app/_components/BaseInput/BaseInput";
-import styles from "@/app/[lang]/YourAccount/page.module.scss"
-import { DecodedIdToken, UserRecord } from "firebase-admin/auth";
-import { useEffect, useState } from "react";
+import styles from "@/app/[lang]/YourAccount/page.module.scss";
+import { ChangeEvent, useState } from "react";
 import {
   PhoneAuthProvider,
   RecaptchaVerifier,
@@ -12,14 +11,9 @@ import {
 import firebase_app from "@/app/_utils/firebase/firebase-client";
 import InputModal from "../InputModal/InputModal";
 import BaseModal from "@/app/_components/BaseModal/BaseModal";
+import { User } from "@/types";
 
-declare global {
-  interface Window {
-    recaptchaVerifier: RecaptchaVerifier;
-  }
-}
-
-export default function Membership({ user }: { user: any }) {
+export default function Membership({ user }: { user: User }) {
   const auth = getAuth(firebase_app);
 
   const setUpRecaptcha = () => {
@@ -30,12 +24,15 @@ export default function Membership({ user }: { user: any }) {
     window.recaptchaVerifier.verify();
   };
 
-  const [number, setNumber] = useState({ newNumber: "", changeNumber: false });
-  const [error, setError] = useState("");
-  const [verificationId, setVerificationId] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [isModal, setIsModal] = useState(false);
-  const [isNumberModal, setIsNumberModal] = useState(false);
+  const [number, setNumber] = useState<{
+    newNumber: string;
+    changeNumber: boolean;
+  }>({ newNumber: "", changeNumber: false });
+  const [error, setError] = useState<string>("");
+  const [verificationId, setVerificationId] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isModal, setIsModal] = useState<boolean>(false);
+  const [isNumberModal, setIsNumberModal] = useState<boolean>(false);
   let applicationVerifier: RecaptchaVerifier;
   async function setPhoneNumber(verCode: string) {
     setIsNumberModal(false);
@@ -59,7 +56,7 @@ export default function Membership({ user }: { user: any }) {
     }
   }
 
-  async function verifyNewNumber(newNum: any) {
+  async function verifyNewNumber(newNum: string) {
     if (!newNum) {
       setIsNumberModal(false);
       return;
@@ -83,7 +80,7 @@ export default function Membership({ user }: { user: any }) {
     setIsModal(true);
   }
 
-  async function verifyCode(code: any) {
+  async function verifyCode(code: string) {
     setIsModal(false);
     if (code) {
       const setPhone = await setPhoneNumber(code);
@@ -134,7 +131,7 @@ export default function Membership({ user }: { user: any }) {
         </div>
         <div className={styles["details"]}>
           <div className={styles["detail-item"]}>
-            <p>{user.email}</p>
+            <p>{user!.email}</p>
             <button className={styles["change-button"]}>
               Change your email address
             </button>
@@ -148,7 +145,7 @@ export default function Membership({ user }: { user: any }) {
             className={`${styles["detail-item"]}`}
             // :className="!phone.number ? 'item-input' : ''"
           >
-            {!user.phoneNumber && (
+            {!user!.phoneNumber && (
               <form
                 onSubmit={(e) => updatePhone(e)}
                 //   @submit.prevent="updatePhone(phone.firstNumber)"
@@ -157,7 +154,7 @@ export default function Membership({ user }: { user: any }) {
               >
                 <BaseInput
                   value={number.newNumber}
-                  onChange={(e: any) =>
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setNumber({ ...number, newNumber: e.target.value })
                   }
                   fullWidth={false}
@@ -185,8 +182,8 @@ export default function Membership({ user }: { user: any }) {
               </form>
             )}
 
-            <p>{number.changeNumber ? number.newNumber : user.phoneNumber}</p>
-            {user.phoneNumber && (
+            <p>{number.changeNumber ? number.newNumber : user!.phoneNumber}</p>
+            {user!.phoneNumber && (
               <div className={styles["btn"]}>
                 <button
                   // :className="phone.buttonCaptcha ? 'button-spinner' : ''"

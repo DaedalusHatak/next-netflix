@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
-import BaseInput from "../../../_components/BaseInput/BaseInput";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import BaseInput from "@/app/_components/BaseInput/BaseInput";
 export default function GetStartedForm() {
   const router = useRouter();
   const [inputValue, setInputValue] = useState<string>("");
-  const [error, setError]: any = useState("");
+  const [error, setError] = useState<string>("");
   function handleClick() {
     if (inputValue.length < 6) {
       setError("Email is too short");
@@ -17,7 +17,7 @@ export default function GetStartedForm() {
     }
     setError("");
   }
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     await fetch("/api/setEmail", {
       method: "POST",
@@ -44,7 +44,9 @@ export default function GetStartedForm() {
               complete="email"
               value={inputValue}
               error={error}
-              onChange={(e: any) => setInputValue(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setInputValue(e.target.value)
+              }
               required
             ></BaseInput>
           </div>

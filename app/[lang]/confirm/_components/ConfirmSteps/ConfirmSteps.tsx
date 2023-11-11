@@ -5,10 +5,16 @@ import SecondStep from "@/app/[lang]/confirm/_components/SecondStep/SecondStep";
 import { useState } from "react";
 import styles from "@/app/[lang]/confirm/page.module.scss";
 import { useRouter } from "next/navigation";
-export default function Steps({ showSecondStep }: any) {
+export default function Steps({
+  showSecondStep,
+}: {
+  showSecondStep: string | boolean;
+}) {
   const router = useRouter();
-  const [isModal, setIsModal] = useState<any>(false);
-  const [isSecondStep, setIsSecondStep] = useState(showSecondStep);
+  const [isModal, setIsModal] = useState<boolean>(false);
+  const [isSecondStep, setIsSecondStep] = useState<string | boolean>(
+    showSecondStep
+  );
   return (
     <>
       {isModal !== false && (

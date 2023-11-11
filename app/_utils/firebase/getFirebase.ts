@@ -1,13 +1,8 @@
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signOut,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import firebase_app from "./firebase-client";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
-import { firebaseAdmin } from "./firebase-admin";
 const auth = getAuth(firebase_app);
 
 async function SignInFirebase(email: string, password: string) {

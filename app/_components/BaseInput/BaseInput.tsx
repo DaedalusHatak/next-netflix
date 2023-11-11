@@ -1,5 +1,6 @@
+import { Input } from "@/types";
 import styles from "./input.module.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 export default function BaseInput({
   name,
   type,
@@ -7,18 +8,19 @@ export default function BaseInput({
   complete,
   required,
   fullWidth,
+  border,
   error,
   value,
   onChange,
-}: any) {
+}: Input) {
   const { label, input, background } = styles;
 
-  const [isFocused, setIsFocused] = useState(value ? true : false);
+  const [isFocused, setIsFocused] = useState<boolean>(value ? true : false);
 
-  const handleFocus = (e: any) => {
+  const handleFocus = () => {
     setIsFocused(true);
   };
-  const handleBlur = (e: any) => {
+  const handleBlur = () => {
     if (value === "") {
       setIsFocused(false);
     }
@@ -26,7 +28,10 @@ export default function BaseInput({
   const labelStyle = isFocused ? styles["label-active"] : label;
   const bg = isBackground ? `${input} ${background} ` : input;
   return (
-    <div className={styles["base-input"]} style={fullWidth ? {width:"100%"} : {width:"unset"}}>
+    <div
+      className={styles["base-input"]}
+      style={fullWidth ? { width: "100%" } : { width: "unset" }}
+    >
       <input
         className={bg}
         value={value}

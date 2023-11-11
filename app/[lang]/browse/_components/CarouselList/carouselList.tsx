@@ -1,23 +1,15 @@
 "use client";
 import { useState } from "react";
 import Carousel from "../Carousel/carousel";
+import { Movie, Position, ResponseData, TVSerie } from "@/types";
 
-export default function CarouselList({ data }: any) {
-  const [slide, setSlide] = useState(null);
-  const [position, setPosition] = useState(null);
+export default function CarouselList({ data }: { data: ResponseData }) {
+  const [slide, setSlide] = useState<Movie | TVSerie | null>(null);
+  const [position, setPosition] = useState<Position | null>(null);
 
-  const chooseSlide = (sld: any) => {
-    setSlide(sld);
-  };
-
-  const choosePosition = (pos: any) => {
-    setPosition(pos);
-  };
   return (
     <>
       <Carousel
-        slide={chooseSlide}
-        position={choosePosition}
         data={data.results}
         emitImage={true}
         emitImageDelay={350}

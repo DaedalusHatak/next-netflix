@@ -1,6 +1,6 @@
 "use client";
 
-export default function AddPosts({ styles }: any) {
+export default function IconInfp() {
   return (
     <>
       <svg

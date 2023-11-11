@@ -3,12 +3,18 @@ import { cookies } from "next/headers";
 import Client from "./client";
 import DataList from "@/app/[lang]/browse/_components/DataList/dataList";
 import getUser from "@/app/_utils/methods/getUser";
+import { User } from "@/types";
 
 const page = process.env.page as string;
 
-export default async function Page({ params: { lang } }: any) {
+export default async function Page({
+  params: { lang },
+}: {
+  params: { lang: string };
+}) {
   const cookie = cookies().get("name");
-  const user = cookie ? await getUser(cookie.value) : null;
+  const user: User = cookie ? await getUser(cookie.value) : null;
+  console.log(user);
   const queries = [
     "3/movie/popular",
     "3/movie/top_rated",

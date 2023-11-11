@@ -950,7 +950,7 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-20.7.1.tgz"
   integrity sha512-LT+OIXpp2kj4E2S/p91BMe+VgGX2+lfO+XTpfXhh+bCk2LkQtHZSub8ewFBMGP5ClysPjTDFa4sMI8Q3n4T0wg==
 
-"@types/nprogress@^0.2.0", "@types/nprogress@^0.2.1":
+"@types/nprogress@^0.2.1":
   version "0.2.3"
   resolved "https://registry.npmjs.org/@types/nprogress/-/nprogress-0.2.3.tgz"
   integrity sha512-k7kRA033QNtC+gLc4VPlfnue58CM1iQLgn1IMAU8VPHGOj7oIHPp9UlhedEnD/Gl8evoCjwkZjlBORtZ3JByUA==
@@ -3123,15 +3123,6 @@ next-intl@^3.0.0-beta.19:
     negotiator "^0.6.3"
     server-only "0.0.1"
     use-intl "3.0.0-beta.3"
-
-next13-progressbar@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/next13-progressbar/-/next13-progressbar-1.0.4.tgz"
-  integrity sha512-N189VpWPZ5eMxcQeAF5SIe3f+UQ4YTNoMV+6f7p5luZ0rGcPzT4RnRpxuImzCxuMTEuQPItR8FtQubQDi4mHnQ==
-  dependencies:
-    "@types/nprogress" "^0.2.0"
-    nprogress "^0.2.0"
-    prop-types "^15.8.1"
 
 next@latest:
   version "13.5.3"

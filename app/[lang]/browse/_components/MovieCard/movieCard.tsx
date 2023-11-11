@@ -5,7 +5,14 @@ import { useDispatch } from "react-redux";
 import styles from "./movieCard.module.scss";
 import { useEffect, useState } from "react";
 import Head from "next/head";
-export default function MovieCard({ position, slide }: any) {
+import { Movie, Position, TVSerie } from "@/types";
+export default function MovieCard({
+  position,
+  slide,
+}: {
+  position: Position;
+  slide: TVSerie | Movie;
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const [scroll, setScroll] = useState(position.y + window.scrollY);
 
@@ -36,10 +43,10 @@ export default function MovieCard({ position, slide }: any) {
   }
 
   const releaseDate = () => {
-    if (slide.release_date) {
-      return slide.release_date.split("-").reverse().join("-");
+    if ((slide as Movie).release_date) {
+      return (slide as Movie).release_date.split("-").reverse().join("-");
     } else {
-      return slide.first_air_date.split("-").reverse().join("-");
+      return (slide as TVSerie).first_air_date.split("-").reverse().join("-");
     }
   };
   const positionX = () => {
@@ -69,7 +76,7 @@ export default function MovieCard({ position, slide }: any) {
       <AnimatePresence>
         {position.width && slide && (
           <motion.div
-            key={position}
+            key={JSON.stringify(position)}
             initial={{ scale: 1.0, left: position.x, top: scroll }} // Set the initial scale to 1.00
             animate={{
               scale: isHovered ? 1.0 : 1.5,
@@ -94,7 +101,7 @@ export default function MovieCard({ position, slide }: any) {
             onMouseLeave={() => resetSlide()}
           >
             {position && slide && (
-              <div key={slide}>
+              <div key={JSON.stringify(slide)}>
                 <Imagee
                   priority={true}
                   className={styles["img-card"]}
@@ -111,7 +118,7 @@ export default function MovieCard({ position, slide }: any) {
               <div className={styles.info}>
                 <h3 className={styles.header}>
                   <span className={styles.name}>Title: </span>
-                  {slide.title || slide.name}
+                  {(slide as Movie).title || (slide as TVSerie).name}
                 </h3>
                 <p className={styles.para}>
                   <span className={styles.name}>Release date: </span>{" "}

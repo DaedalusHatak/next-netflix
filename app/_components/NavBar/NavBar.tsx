@@ -8,14 +8,18 @@ import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
 export default function NavBar({ user }: any) {
-  const [isHoveredMenu, setIsHoveredMenu] = useState(false);
-  const [isHoveredProfile, setIsHoveredProfile] = useState(false);
-  const [wasButton, setWasButton] = useState(false);
-  const [scroll, setScroll] = useState(0);
-  const [width, setwidth] = useState(0);
-  const [profileCounter, setProfileCounter] = useState(0);
+  const [isHoveredMenu, setIsHoveredMenu] = useState<boolean>(false);
+  const [isHoveredProfile, setIsHoveredProfile] = useState<boolean>(false);
+  const [wasButton, setWasButton] = useState<boolean>(false);
+  const [scroll, setScroll] = useState<number>(0);
+  const [width, setwidth] = useState<number>(0);
+  const [profileCounter, setProfileCounter] = useState<number>(0);
   const router = useRouter();
   const avatar = useSelector((state: any) => state.avatar.value.photoURL);
+
+  let menuTimeout: NodeJS.Timeout;
+  let profileTimeout: NodeJS.Timeout;
+
   useEffect(() => {
     if (isHoveredMenu === true && wasButton) {
       const li = menuDropdown.current!.children[
@@ -44,8 +48,7 @@ export default function NavBar({ user }: any) {
     setIsHoveredMenu(false);
     setIsHoveredProfile(false);
   }
-  let menuTimeout: NodeJS.Timeout;
-  let profileTimeout: NodeJS.Timeout;
+
   function handleResize() {
     setwidth(window.innerWidth);
   }
@@ -94,8 +97,10 @@ export default function NavBar({ user }: any) {
       account.current!.focus();
     }
   }
-  function handleKeys(event: any) {
+  function handleKeys(event: React.KeyboardEvent) {
     setWasButton(true);
+
+    const elementId = (event.target as HTMLElement).id;
 
     if (event.altKey && event.ctrlKey) {
       return;
@@ -115,13 +120,13 @@ export default function NavBar({ user }: any) {
     if (isOpenKey) {
       event.preventDefault();
     }
-    if (event.target.id === "menu" && !isHoveredMenu && isOpenKey) {
+    if (elementId === "menu" && !isHoveredMenu && isOpenKey) {
       setProfileCounter(0);
       setIsHoveredProfile(false);
       setIsHoveredMenu(true);
       return;
     }
-    if (event.target.id === "profile" && !isHoveredProfile && isOpenKey) {
+    if (elementId === "profile" && !isHoveredProfile && isOpenKey) {
       setProfileCounter(0);
       setIsHoveredMenu(false);
       setIsHoveredProfile(true);
@@ -130,8 +135,8 @@ export default function NavBar({ user }: any) {
     }
 
     if (
-      ((event.target.id === "menu" && isHoveredMenu) ||
-        (event.target.id === "profile" && isHoveredProfile)) &&
+      ((elementId === "menu" && isHoveredMenu) ||
+        (elementId === "profile" && isHoveredProfile)) &&
       event.key === "Tab" &&
       !event.shiftKey
     ) {
@@ -225,7 +230,7 @@ export default function NavBar({ user }: any) {
         </ul>
         <button
           id="menu"
-          onClick={()=> handleHoverMenu()}
+          onClick={() => handleHoverMenu()}
           onMouseOver={() => handleHoverMenu()}
           onMouseLeave={() => handleUnhoverMenu()}
           onKeyDown={handleKeys}
@@ -283,7 +288,7 @@ export default function NavBar({ user }: any) {
         <div
           id="profile"
           tabIndex={0}
-          onClick={()=> handleHoverProfile()}
+          onClick={() => handleHoverProfile()}
           onMouseOver={() => handleHoverProfile()}
           onMouseLeave={() => handleUnhoverProfile()}
           onKeyDown={handleKeys}
