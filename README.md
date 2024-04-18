@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Nextjs 3 Netflix Clone
 
-First, run the development server:
+![Netflix Clone](https://github.com/DaedalusHatak/nuxt-netflix/blob/master/Daedalus.png)
+
+## Project Overview
+
+This Netflix clone project was created using a combination of cutting-edge technologies. It leverages **Leonardo.ai** for graphics generation, **Nextjs** for both frontend and backend development, and **Firebase** for user authentication. As the creator's first project using Nuxt, it represents a significant milestone, and it encompasses various aspects of web development, including custom CSS styling.
+
+## Technologies Used
+
+-   **Leonardo.ai**: Utilized for generating graphics and enhancing the visual appeal of the Netflix clone.
+    
+-   **Nextjs**: The core technology for building the frontend and backend of the application. Nuxt simplifies the development process and offers features like server-side rendering, routing, and state management.
+    
+-   **Firebase**: Employed for user authentication, Firebase provides a secure and scalable authentication solution for the project.
+    
+
+## Project Highlights
+
+-   **Custom CSS Styling**: The creator implemented all CSS stylings from scratch, giving the Netflix clone a unique and polished appearance.
+    
+-   **Graphic Enhancement**: Leonardo.ai was used to enhance the overall visual experience of the application. This showcases the creative use of AI in web development.
+    
+-   **Frontend and Backend Integration**: Nuxt was employed for both frontend and backend development, ensuring a seamless user experience and efficient data handling.
+
+
+## Setup
+
+Make sure to install the dependencies:
+
+```bash
+# yarn
+yarn install
+
+# npm
+npm install
+
+# pnpm
+pnpm install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Production
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Build the application for production:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run build
+```
 
-## Learn More
+Locally preview production build:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run preview
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
