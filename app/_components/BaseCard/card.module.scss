@@ -1,0 +1,47 @@
+ .tv {
+    height: 100%;
+    min-height: auto;
+    margin: auto;
+    flex-wrap: nowrap;
+    padding: 4.5rem 0;
+
+    align-items: center;
+  }
+  .tv h2 {
+    font-size: 2rem;
+    font-weight: 900;
+  }
+  .tv p {
+    margin: 1rem 0 0;
+  }
+
+  .tv video {
+    position: absolute;
+    width: 100%;
+  }
+
+
+  .text {
+    margin-bottom: 0.5rem;
+  }
+  .screen {
+    line-height: 1;
+    position: relative;
+    flex-basis: 50%;
+  }
+
+  @media (min-width: 600px) {
+    .tv {
+      display: flex;
+      flex-direction: row;
+    }
+    .tv p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .tv h2 {
+      font-size: 3rem;
+    }
+  }

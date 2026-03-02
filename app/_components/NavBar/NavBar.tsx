@@ -191,10 +191,11 @@ export default function NavBar({ user }: any) {
     <nav className={`${styles.nav}  ${scroll > 0 ? styles["background"] : ""}`}>
       <div className={styles.navbar}>
         <Image
+       
           src="/assets/daedalus.png"
           height={64}
           width={185}
-          className="logo"
+          className={styles.logo}
           alt="Daedalus logo"
         />
 

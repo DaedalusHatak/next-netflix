@@ -6,6 +6,7 @@
   .base-input {
     position: relative;
     width: 100%;
+    box-sizing: border-box;
   }
 
 
@@ -32,7 +33,9 @@
     background-clip: padding-box;
     appearance: none;
     background-color: transparent !important;
+    box-sizing: border-box;
   }
+
   .label {
     width: max-content;
     position: absolute;

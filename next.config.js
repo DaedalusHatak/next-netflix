@@ -2,6 +2,9 @@ const port = process.env.PORT || 3000;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
   reactStrictMode: false,
   experimental: {
     serverActions: true,

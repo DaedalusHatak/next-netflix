@@ -7,7 +7,7 @@ export default function DownloadImg(){
     
   <Image className="background-img" src="/assets/pot3.png" width={200} height={200} alt="" />
   <div className="video-screen">
-    <Image className="videobox" src="/assets/boxshot.png" width={200} height={200} alt="" />
+    <Image className="videobox" src="/assets/boxshot.png" width={200} height={100} alt="" />
     <div className="status">
       <div>Movie</div>
       <div className="blue">Downloading...</div>

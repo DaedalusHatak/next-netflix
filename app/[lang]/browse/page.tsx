@@ -8,11 +8,12 @@ import { User } from "@/types";
 const page = process.env.page as string;
 
 export default async function Page({
-  params: { lang },
+  params,
 }: {
   params: { lang: string };
 }) {
-  const cookie = cookies().get("name");
+  const { lang } = await params;
+  const cookie = await cookies().then((cookieStore) => cookieStore.get("name"));
   const user: User = cookie ? await getUser(cookie.value) : null;
   console.log(user);
   const queries = [
@@ -21,16 +22,24 @@ export default async function Page({
     "3/tv/popular",
     "3/tv/top_rated",
   ];
+  const name = [
+    "Popular Movies",
+    "Top Rated Movies",
+    "Popular TV Shows",
+    "Top Rated TV Shows",
+  ];
+
   return (
     <>
       <Client user={user} />
-      <main className="flex gap-28 flex-col items-center justify-between p-[0.5rem 0] md:p-[3rem 0] pt-32 mb-24">
+     <main className="flex gap-28 flex-col items-center justify-between p-[0.5rem 0] md:p-[3rem 0] pt-32 mb-24">
         {queries.map((q, index) => (
+       <div key={index}>   <p>{name[index]}</p>
           <DataList
             lang={lang}
             key={index}
             query={q}
-          />
+          /></div>
         ))}
       </main>
     </>

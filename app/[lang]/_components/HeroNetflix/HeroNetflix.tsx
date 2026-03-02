@@ -21,6 +21,7 @@ export default function HeroNetflix() {
               src="/assets/daedalus.png"
               width="250"
               height="250"
+              className={styles.logo}
               alt=""
             />
           </span>

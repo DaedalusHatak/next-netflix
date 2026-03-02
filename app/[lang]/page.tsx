@@ -35,7 +35,7 @@ function Components() {
   return (
     <>
       {sections.map((section, index) => (
-        <section key={index}>
+        <section className='content-section' key={index}>
           <BaseCard
             desc={section.desc}
             header={section.header}
@@ -47,11 +47,12 @@ function Components() {
   );
 }
 
-export default function Page({
-  params: { lang },
+export default async function Page({
+  params,
 }: {
   params: { lang: string };
 }) {
+  const { lang } = await params;
   return (
     <div>
       <section className="hero-image">

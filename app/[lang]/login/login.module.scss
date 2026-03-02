@@ -60,7 +60,13 @@
 }
 .logo-span {
   margin-right: auto;
+  height: 100%;
+ width: auto;
+
 }
+.logo-span img {
+  height: 100%;
+  width: auto;}
 
 .flex-hero {
   display: flex;

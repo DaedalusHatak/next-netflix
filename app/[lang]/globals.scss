@@ -1,6 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+* {
+  box-sizing: content-box;
+  font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+  scroll-behavior: smooth;
+  line-height: 1.12em;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 :root {
   --foreground-rgb: 255, 255, 255;
@@ -20,7 +28,7 @@ body {
   overflow-x: hidden;
 }
 main {
-  height: 100vh;
+ 
   color: rgb(var(--foreground-rgb));
   background: #0f0b0f;
 }
@@ -58,6 +66,22 @@ img {
   line-height: 1;
   position: relative;
   flex-basis: 50%;
+}
+
+.videobox{
+  width: 100% !important;
+  height: auto !important;
+  max-height: 100px !important;
+}
+.download{
+  width: 100% !important;
+  height: auto !important;
+  max-height: 100px !important;
+}
+.screen img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
 }
 @media (min-width: 600px) {
   .tv {
@@ -354,6 +378,7 @@ a {
 img {
   z-index: 1;
   width: 100%;
+  height: auto;
 }
 .video-screen-everywhere {
   z-index: -1;

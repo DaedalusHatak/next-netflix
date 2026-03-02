@@ -1,9 +1,15 @@
 @import "./base.css";
 
 * {
+  box-sizing: content-box;
   font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
   scroll-behavior: smooth;
   line-height: 1.12em;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 main {
 
@@ -15,3 +21,30 @@ body {
   overflow-x: hidden;
 }
 
+  @media screen and (min-width: 600px) {
+    .content-section {
+      max-width: calc(100% - 4rem);
+      margin: auto;
+    }
+  }
+  @media screen and (min-width: 1280px) {
+    .content-section {
+      max-width: calc(83.33333333333334% - 6rem);
+      margin: auto;
+    }
+    section {
+      padding: 0 3rem;
+    }
+  }
+  @media screen and (min-width: 1920px) {
+    .content-section {
+      max-width: calc(66.66666666666666% - 6rem);
+      margin: auto;
+    }
+  }
+  .screen {
+    z-index: 1;
+    height: fit-content;
+    width: 100%;
+    max-height: 500px;
+  }

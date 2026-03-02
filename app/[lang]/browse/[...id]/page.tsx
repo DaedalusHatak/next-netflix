@@ -18,14 +18,15 @@ function setQueries(id: string) {
 }
 
 export default async function Page({
-  params: { lang, id },
+  params,
   searchParams,
 }: {
   params: { lang: string; id: string };
   searchParams: string;
 }) {
+  const { lang, id } = await params;
   console.log(id);
-  const cookie = cookies().get("name");
+  const cookie = await cookies().then((cookieStore) => cookieStore.get("name"));
   const user: User = cookie ? await getUser(cookie.value) : null;
   const queries = setQueries(id);
   return (
