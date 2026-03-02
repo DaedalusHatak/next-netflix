@@ -13,8 +13,9 @@ export default async function Page({
   params: { lang: string };
 }) {
   const { lang } = await params;
-  const cookie = await cookies().then((cookieStore) => cookieStore.get("name"));
-  const user: User = cookie ? await getUser(cookie.value) : null;
+  const cookie = await cookies()
+  const cookieValue = cookie.get("name")?.value;
+  const user: User = cookieValue ? await getUser(cookieValue) : null;
   console.log(user);
   const queries = [
     "3/movie/popular",

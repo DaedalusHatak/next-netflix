@@ -26,8 +26,9 @@ export default async function Page({
 }) {
   const { lang, id } = await params;
   console.log(id);
-  const cookie = await cookies().then((cookieStore) => cookieStore.get("name"));
-  const user: User = cookie ? await getUser(cookie.value) : null;
+  const cookie = await cookies()
+  const cookieValue = cookie.get("name")?.value;
+  const user: User = cookieValue ? await getUser(cookieValue) : null;
   const queries = setQueries(id);
   return (
     <>
