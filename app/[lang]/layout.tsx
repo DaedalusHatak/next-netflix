@@ -11,16 +11,15 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-  params,
+
   children,
 }: {
-  params: {lang: string},
+
   children: React.ReactNode;
 }) {
 
-  const {lang} = await params;
   return (
-    <html className="html" lang={lang ?? "en-US"}>
+    <html className="html" lang={"en-US"}>
       <body className={`${inter.className} body`}>
       <NextTopLoader showSpinner={false} height={7}  color="#2299DD" />
        <main> <ReduxProvider>{children}</ReduxProvider></main>

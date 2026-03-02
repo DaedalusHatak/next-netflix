@@ -14,6 +14,7 @@ export default function Answer({
     <AnimatePresence>
       {question.isActive && (
         <motion.div
+         className={styles.answer}
           initial={{
             maxHeight: "0%",
             scaleY: 0,
@@ -30,7 +31,7 @@ export default function Answer({
             transformOrigin: "top",
           }}
           transition={{ duration: 0.25, damping: 10, stiffness: 100 }}
-          className={styles.answer}
+         
         >
           {question.answer}
           <br />
